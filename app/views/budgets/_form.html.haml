@@ -1,0 +1,23 @@
+= form_for @budget do |f|
+  .content
+    .hero-unit
+      %div{:style => 'float:left;margin-bottom:18px;'}
+        = f.text_field :household_income, :placeholder => 'Household Income', :style => 'width:120px;'
+      .floating_remains{:style => 'float:left;margin:0 0 18px 58px;'}
+        %input.budget_remaining.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'width:120px;text-align:center;'}
+      %div{:style => 'float:right;margin-bottom:18px;'}
+        = f.submit 'Save changes', :class => 'btn primary'
+      %table.zebra-striped
+        %thead
+          %tr
+            %th Budgeted Item
+            %th Sub Total
+            %th TOTAL
+            %th Actually Spent
+            %th % of Take Home Pay
+        %tbody.mcfp_body
+          - Transaction::CATEGORIES.each do |category|
+            = render :partial => 'transaction', :locals => {:f => f, :name => category}
+      %a.btn Cancel
+      %div{:style => 'float:right;'}
+        = f.submit 'Save changes', :class => 'btn primary'

@@ -1,0 +1,26 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  database: maggie_money_development
+  pool: 5
+  username: root
+  password:
+
+test: &test
+  adapter: mysql
+  encoding: utf8
+  database: maggie_money_test
+  pool: 5
+  username:
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: maggie_money_production
+  pool: 5
+  username:
+  password:
+
+cucumber:
+  <<: *test

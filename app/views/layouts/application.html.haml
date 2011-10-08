@@ -1,0 +1,61 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %title Maggie Money
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    :plain
+      <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+      <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <style type="text/css">
+        body {
+          padding-top: 60px;
+        }
+      </style>
+    / Le styles
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    / Le fav and touch icons
+    %link{:href => "images/favicon.ico", :rel => "shortcut icon"}
+    %link{:href => "images/apple-touch-icon.png", :rel => "apple-touch-icon"}
+    %link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}
+    %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}
+  %body
+    .topbar
+      .fill
+        .container
+          %a.brand{:href=> root_path}Maggie Money
+          -if current_user
+            %ul.nav
+              %li
+                %a{:href => dashboard_path}Dashboard
+              %li
+                %a{:href => new_budget_path}MCFP
+          -unless current_user
+            =form_tag user_session_path, :class => "pull-right" do
+              =text_field_tag "user[email]", nil, :class => "input-small", :placeholder => "email"
+              =password_field_tag "user[password]", nil, :class => "input-small", :placeholder => "password"
+              %button.btn{:type => "submit"}Sign In
+          -else
+            .pull-right
+              =button_to "Logout", destroy_user_session_path, :method => :delete
+
+    .container
+      - if flash[:notice]
+        .alert-message.info.fade.in{"data-alert" => "alert"}
+          %a.close{:href => "#"}x
+          %p=flash[:notice]
+      - if flash[:alert]
+        .alert-message.error.fade.in{"data-alert" => "alert"}
+          %a.close{:href => "#"}x
+          %p=flash[:alert]
+      - if flash[:error]
+        .alert-message.error.fade.in{"data-alert" => "alert"}
+          %a.close{:href => "#"}x
+          %p=flash[:error]
+      = yield
+      %footer
+        %p &copy; Maggie Money 2011

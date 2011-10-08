@@ -1,0 +1,4 @@
+= render 'major', :name => name
+
+= f.fields_for :transactions, @budget.transactions.select{|trans| trans.category?(name)} do |t|
+  = render 'minor', :t => t
