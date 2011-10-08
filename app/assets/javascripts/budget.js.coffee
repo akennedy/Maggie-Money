@@ -1,5 +1,7 @@
 $(document).ready ->
 
+  $('.datepicker').datepicker()
+
   set_negative = (totalSum) ->
     if Number(totalSum) < 0 then $('.budget_remaining').addClass('negative') else $('.budget_remaining').removeClass('negative')
 
@@ -10,6 +12,8 @@ $(document).ready ->
 
   percentage = (category) ->
     percent = ($(".#{category}").sum() / $('#budget_household_income').sum()) * 100
+    if isNaN(percent)
+      percent = 0
     $("##{category}_percent").val(Number(percent).toFixed(2) + " %")
 
   calculate_percentage = ->

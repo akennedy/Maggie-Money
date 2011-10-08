@@ -3,8 +3,9 @@
 %tr
   %td= t.object.name.humanize
   %td
-    = t.text_field :amount, :value => number_to_currency(t.object.amount, :unit => '') || '0.00', :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :autocomplete => :off
+    = t.text_field :amount, :value => number_to_currency(t.object.amount, :unit => '') || '0.00', :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}"
   %td
   %td
-    = t.text_field :actual, :value => number_to_currency(t.object.actual, :unit => '') || '0.00', :autocomplete => :off
+    = t.text_field :actual, :value => number_to_currency(t.object.actual, :unit => '') || '0.00'
   %td
+    = t.hidden_field :id

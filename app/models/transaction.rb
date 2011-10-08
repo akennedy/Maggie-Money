@@ -2,8 +2,6 @@ class Transaction < ActiveRecord::Base
   belongs_to :budget
   belongs_to :user
 
-  validates :amount, :presence => true
-
   CATEGORIES = ['charity', 'saving', 'housing', 'utilities', 'food', 'transportation', 'clothing', 'medical', 'personal', 'recreation', 'debts']
   ITEMS = [
     {:name => 'gifts', :category => 'charity'},
