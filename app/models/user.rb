@@ -8,9 +8,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :budgets
-  has_many :transactions, :through => :budgets
+  has_many :budget_items, :through => :budgets
 
-  def net_worth
-    transactions.sum(:amount)
-  end
 end

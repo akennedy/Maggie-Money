@@ -1,6 +1,9 @@
-class Transaction < ActiveRecord::Base
+class BudgetItem < ActiveRecord::Base
   belongs_to :budget
   belongs_to :user
+
+  validates :amount, :numericality => true
+  validates :actual, :numericality => true
 
   CATEGORIES = ['charity', 'saving', 'housing', 'utilities', 'food', 'transportation', 'clothing', 'medical', 'personal', 'recreation', 'debts']
   ITEMS = [

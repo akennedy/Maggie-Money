@@ -5,6 +5,13 @@ $(document).ready ->
   set_negative = (totalSum) ->
     if Number(totalSum) < 0 then $('.budget_remaining').addClass('negative') else $('.budget_remaining').removeClass('negative')
 
+  calculate_total = ->
+    $('.total').each( ->
+      category = $(this).data('category')
+      totalSum = $(".#{category}").sum()
+      $(this).val(Number(totalSum).toFixed(2))
+    )
+
   calculate_remaining = ->
     totalSum = $('#budget_household_income').sum() - $('.sub_total').sum()
     $('.budget_remaining').val("$" + Number(totalSum).toFixed(2) + " left")
@@ -35,6 +42,7 @@ $(document).ready ->
     calculate_percentage()
   )
 
+  calculate_total()
   calculate_remaining()
   calculate_percentage()
   set_negative($('#budget_household_income').sum() - $('.sub_total').sum())

@@ -1,31 +1,51 @@
 class BudgetsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :find_budget, :only => [:edit, :update]
   respond_to :html
+
+  def index
+    authorize! :read, Budget
+    @budgets = current_user.budgets
+  end
 
   def new
     @budget = current_user.budgets.build
-    build_transactions
+    build_budget_items
   end
 
   def create
     @budget = current_user.budgets.build(params[:budget])
     if @budget.save
-      flash[:notice] = 'Successfully created Budget'
+      flash[:success] = 'Successfully created Budget'
     else
       flash[:error] = 'Error creating Budget'
     end
-    respond_with @budget
+    respond_with @budget, :location => budgets_path
   end
 
   def edit
-    @budget = Budget.find(params[:id])
+    authorize! :update, @budget
+  end
+
+  def update
+    authorize! :update, @budget
+    if @budget.update_attributes(params[:budget])
+      flash[:success] = 'Successfully updated Budget'
+    else
+      flash[:notice] = 'Error updating Budget'
+    end
+    respond_with @invoice, :location => budgets_path
   end
 
 private
 
-  def build_transactions
-    Transaction::ITEMS.each do |ti|
-      @budget.transactions.build(:name => ti[:name], :category => ti[:category])
+  def find_budget
+    @budget = Budget.find(params[:id])
+  end
+
+  def build_budget_items
+    BudgetItem::ITEMS.each do |ti|
+      @budget.budget_items.build(:name => ti[:name], :category => ti[:category], :amount => '0.00', :actual => '0.00')
     end
   end
 end

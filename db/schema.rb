@@ -13,20 +13,20 @@
 
 ActiveRecord::Schema.define(:version => 20111002141640) do
 
-  create_table "budgets", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "date"
-    t.decimal  "household_income", :precision => 10, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "transactions", :force => true do |t|
+  create_table "budget_items", :force => true do |t|
     t.integer  "budget_id"
     t.string   "name"
     t.string   "category"
     t.decimal  "amount",     :precision => 10, :scale => 2
     t.decimal  "actual",     :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "budgets", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "date"
+    t.decimal  "household_income", :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

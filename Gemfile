@@ -6,6 +6,7 @@ gem 'pg'
 gem 'mysql'
 gem 'kaminari'
 gem 'devise'
+gem 'cancan'
 gem 'jquery-rails'
 gem 'therubyracer-heroku'
 

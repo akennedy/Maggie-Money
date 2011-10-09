@@ -5,9 +5,5 @@ class CustomPagesController < ApplicationController
   end
 
   def dashboard
-    @transactions = current_user.transactions.order("created_at DESC").limit(25)
-  end
-
-  def mcfp
   end
 end
