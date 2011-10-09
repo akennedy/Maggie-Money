@@ -25,7 +25,7 @@
           -if current_user
             %ul.nav
               %li
-                %a{:href => new_budget_path}MCFP
+                %a{:href => budgets_path}MCFPs
           -unless current_user
             =form_tag user_session_path, :class => "pull-right" do
               =text_field_tag "user[email]", nil, :class => "input-small", :placeholder => "email"
@@ -33,7 +33,9 @@
               %button.btn{:type => "submit"}Sign In
           -else
             .pull-right
-              =button_to "Logout", destroy_user_session_path, :method => :delete
+              = button_to "Logout", destroy_user_session_path, :method => :delete
+            .pull-right{:style => 'margin:8px 10px 0 0;color:#BFBFBF;'}
+              = current_user.email
 
     .container
       - if flash[:success]

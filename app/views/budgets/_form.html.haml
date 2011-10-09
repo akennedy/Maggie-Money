@@ -2,12 +2,14 @@
   .floating_remains{:style => 'float:left;margin:0 0 18px 58px;'}
     %input.budget_remaining.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'width:120px;text-align:center;'}
   = render "shared/error_messages", :target => @budget
-  %div{:style => 'float:left;margin-bottom:18px;'}
-    = f.text_field :household_income, :placeholder => 'Household Income', :style => 'width:120px;'
+  %div.input-prepend{:style => 'float:left;margin-bottom:18px;'}
+    %span.add-on $
+    = f.text_field :household_income, :placeholder => 'Household Income', :style => 'width:120px;', :autocomplete => :off
   %div{:style => 'float:left;margin:0 0 18px 25px;'}
     = f.text_field :date, :class => 'datepicker', :placeholder => 'mm/dd/yyyy', :style => 'width:120px;', :value => @budget.date.try(:strftime, '%m/%d/%Y')
   %div{:style => 'float:right;margin-bottom:18px;'}
-    = f.submit 'Save changes', :class => 'btn primary'
+    = link_to 'Cancel', budgets_path, :class => 'btn'
+    = f.submit :class => 'btn primary'
   %table.zebra-striped
     %thead
       %tr
@@ -15,7 +17,7 @@
         %th Sub Total
         %th TOTAL
         %th Actually Spent
-        %th % of Take Home Pay
+        %th % OF INCOME
     %tbody.mcfp_body
       - BudgetItem::CATEGORIES.each do |category|
         %tr
@@ -32,13 +34,15 @@
           = t.hidden_field :category, :value => t.object.category
           %tr
             %td= t.object.name.humanize
+            %td.input-prepend
+              %span.add-on $
+              = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :autocomplete => :off
             %td
-              = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}"
-            %td
-            %td
-              = t.text_field :actual
+            %td.input-prepend
+              %span.add-on $
+              = t.text_field :actual, :class => "actual", :autocomplete => :off
             %td
               = t.hidden_field :id
-  %a.btn Cancel
   %div{:style => 'float:right;'}
-    = f.submit 'Save changes', :class => 'btn primary'
+    = link_to 'Cancel', budgets_path, :class => 'btn'
+    = f.submit :class => 'btn primary'
