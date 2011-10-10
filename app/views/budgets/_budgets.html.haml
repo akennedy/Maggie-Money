@@ -1,0 +1,21 @@
+%table.zebra-striped
+  %thead
+    %tr
+      %th Date
+      %th Household Income
+      %th Budgeted
+      %th
+      %th
+      %th
+  %tbody
+    - budgets.each do |budget|
+      %tr
+        %td= link_to budget.date, budget_path(budget)
+        %td= number_to_currency(budget.household_income)
+        %td= number_to_currency(budget.budget_items.map(&:amount).sum)
+        %td
+          = link_to 'Edit', edit_budget_path(budget)
+        %td
+          = link_to 'Clone', '#'
+        %td
+          = link_to 'Delete', budget_path(budget),:method => :delete, :confirm => 'Are You Sure?'

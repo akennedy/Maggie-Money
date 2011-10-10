@@ -1,3 +1,19 @@
-.content
-  .hero-unit
-    %h1 Dashboard
+#dashboard
+  .content
+    .well
+      .row
+        .span12
+          %h3
+            Cash Flow Plans
+            %small= "Last one: #{current_user.budgets.any? ? current_user.budgets.order('date DESC').first.date : 'never'}"
+        .span3
+          - if current_user.budgets.any?
+            %a.btn.show_list{:'data-list' => 'mcfp'} Show list
+          %a.btn.primary{:href => new_budget_path} New &raquo;
+      - if current_user.budgets.any?
+        .row#mcfp_list.hidden
+          .span15
+            = render 'budgets/budgets', :budgets => current_user.budgets.limit(12).order('date DESC')
+            - if current_user.budgets.size > 1
+              .span15
+                %a{:href => budgets_path} show more &raquo;

@@ -4,24 +4,4 @@
       %h3 Budgets
       %div{:style => 'float:right;margin-bottom:18px;'}
         %a{:class => "btn primary", :href => new_budget_path, :style => 'float:right;'} New Budget &raquo;
-      %table.zebra-striped
-        %thead
-          %tr
-            %th Date
-            %th Household Income
-            %th Budgeted
-            %th
-            %th
-            %th
-        %tbody
-          - @budgets.each do |budget|
-            %tr
-              %td= link_to budget.date.try(:strftime, '%m/%d/%Y'), budget_path(budget)
-              %td= number_to_currency(budget.household_income)
-              %td= number_to_currency(budget.budget_items.map(&:amount).sum)
-              %td
-                = link_to 'Edit', edit_budget_path(budget)
-              %td
-                = link_to 'Clone', '#'
-              %td
-                = link_to 'Delete', budget_path(budget),:method => :delete, :confirm => 'Are You Sure?'
+      = render 'budgets', :budgets => @budgets.order('date DESC')

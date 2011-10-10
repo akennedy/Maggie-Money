@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20111002141640) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "date"
+    t.date     "date"
     t.decimal  "household_income", :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"

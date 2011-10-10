@@ -18,14 +18,19 @@
         }
       </style>
   %body
-    .topbar
+    .topbar{:'data-dropdown' => "dropdown"}
       .fill
         .container
           %a.brand{:href=> root_path}Maggie Money
           -if current_user
             %ul.nav
               %li
-                %a{:href => budgets_path}MCFPs
+                %a{:href => dashboard_path}Dashboard
+              %li.dropdown
+                %a.dropdown-toggle{:href => "javascript:void(0)"}Worksheets
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => budgets_path}Cash Flow Plans
           -unless current_user
             =form_tag user_session_path, :class => "pull-right" do
               =text_field_tag "user[email]", nil, :class => "input-small", :placeholder => "email"

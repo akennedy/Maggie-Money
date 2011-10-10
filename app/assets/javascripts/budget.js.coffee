@@ -1,6 +1,6 @@
 $(document).ready ->
 
-  $('.datepicker').datepicker()
+  $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' })
 
   set_negative = (totalSum) ->
     if Number(totalSum) < 0
