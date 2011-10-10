@@ -1,11 +1,15 @@
 class BudgetsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_budget, :only => [:edit, :update]
+  before_filter :find_budget, :only => [:show, :edit, :update, :destroy]
   respond_to :html
 
   def index
     authorize! :read, Budget
     @budgets = current_user.budgets
+  end
+
+  def show
+    authorize! :read, @budget
   end
 
   def new
@@ -34,7 +38,17 @@ class BudgetsController < ApplicationController
     else
       flash[:notice] = 'Error updating Budget'
     end
-    respond_with @invoice, :location => budgets_path
+    respond_with @budget, :location => budgets_path
+  end
+
+  def destroy
+    authorize! :destroy, @budget
+    if @budget.destroy
+      flash[:success] = 'Successfully deleted Budget'
+    else
+      flash[:notice] = 'Error deleting Budget'
+    end
+    respond_with @budget, :location => budgets_path
   end
 
 private

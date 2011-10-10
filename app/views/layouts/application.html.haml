@@ -5,6 +5,7 @@
     %title Maggie Money
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
+    = csrf_meta_tag
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     :plain
@@ -31,16 +32,20 @@
                 %ul.dropdown-menu
                   %li
                     %a{:href => budgets_path}Cash Flow Plans
+            %ul.nav.secondary-nav
+              %li.dropdown
+                %a.dropdown-toggle{:href => "javascript:void(0)"}= current_user.email
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => 'javascript:void(0)'}Preferences
+                  %li.divider
+                  %li
+                    %a{:href => sign_out_path, :method => :delete}Logout
           -unless current_user
             =form_tag user_session_path, :class => "pull-right" do
               =text_field_tag "user[email]", nil, :class => "input-small", :placeholder => "email"
               =password_field_tag "user[password]", nil, :class => "input-small", :placeholder => "password"
               %button.btn{:type => "submit"}Sign In
-          -else
-            .pull-right
-              = button_to "Logout", destroy_user_session_path, :method => :delete
-            .pull-right{:style => 'margin:8px 10px 0 0;color:#BFBFBF;'}
-              = current_user.email
 
     .container
       - if flash[:success]

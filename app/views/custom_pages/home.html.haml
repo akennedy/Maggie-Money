@@ -1,11 +1,12 @@
-.hero-unit
-  %h1 Welcome to Maggie Money!
-  %p Why is there so much month left at the end of the money?
-  %br
-  - if current_user
-    %p
-      %a{:class => "btn info large", :href => dashboard_path} Dashboard &raquo;
-      %a{:class => "btn primary large", :href => new_budget_path} New Budget &raquo;
-  - else
-    %p
-      %a{:class => "btn primary large", :href => new_user_registration_path} Sign Up &raquo;
+.content
+  .hero-unit
+    %h1 Welcome to Maggie Money!
+    %p Why is there so much month left at the end of the money?
+    %br
+    - if current_user
+      %p
+        %a{:class => "btn info large", :href => dashboard_path} Dashboard &raquo;
+        %a{:class => "btn primary large", :href => new_budget_path} New Budget &raquo;
+    - else
+      %p
+        %a{:class => "btn primary large", :href => new_user_registration_path} Sign Up &raquo;
