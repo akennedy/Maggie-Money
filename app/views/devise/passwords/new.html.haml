@@ -1,0 +1,17 @@
+.content
+  .hero-unit
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+      = devise_error_messages!
+      .form-stacked
+        %fieldset
+          %legend Forgot your password?
+          .clearfix
+            = f.label :email
+            %div.input
+              = f.email_field :email, :class => 'xlarge'
+
+          .actions
+            = f.submit "Send me reset password instructions", :class => 'btn primary'
+
+          %p
+            = render 'devise/shared/links'

@@ -1,0 +1,17 @@
+.content
+  .hero-unit
+    = form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f|
+      = devise_error_messages!
+      .form-stacked
+        %fieldset
+          %legend Resend unlock instructions
+          .clearfix
+            = f.label :email
+            %div.input
+              = f.email_field :email, :class => 'xlarge'
+
+          .actions
+            = f.submit "Resend unlock instructions", :class => 'btn primary'
+
+          %p
+            = render 'devise/shared/links'

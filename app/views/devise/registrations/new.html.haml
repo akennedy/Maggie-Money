@@ -1,0 +1,26 @@
+.content
+  .hero-unit
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      .form-stacked
+        %fieldset
+          %legend Sign up Right Now
+          .clearfix
+            = f.label :email
+            %div.input
+              = f.email_field :email, :class => 'xlarge'
+          .clearfix
+            = f.label :password
+            .input
+              = f.password_field :password, :class => 'xlarge'
+
+          .clearfix
+            = f.label :password_confirmation
+            .input
+              = f.password_field :password_confirmation, :class => 'xlarge'
+
+          .actions
+            = f.submit "Sign up", :class => 'btn primary'
+
+          %p
+            = render 'devise/shared/links'
