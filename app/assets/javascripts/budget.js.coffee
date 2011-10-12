@@ -4,11 +4,11 @@ $(document).ready ->
 
   set_negative = (totalSum) ->
     if Number(totalSum) < 0
-      $('.budget_remaining').removeClass('positive').addClass('negative')
+      $('.cash_flow_plan_remaining').removeClass('positive').addClass('negative')
     else if Number(totalSum) > 0
-      $('.budget_remaining').removeClass('negative').addClass('positive')
+      $('.cash_flow_plan_remaining').removeClass('negative').addClass('positive')
     else
-      $('.budget_remaining').removeClass('negative').removeClass('positive')
+      $('.cash_flow_plan_remaining').removeClass('negative').removeClass('positive')
 
   calculate_total = ->
     $('.total').each( ->
@@ -18,12 +18,12 @@ $(document).ready ->
     )
 
   calculate_remaining = ->
-    totalSum = $('#budget_household_income').sum() - $('.sub_total').sum()
-    $('.budget_remaining').val("$" + Number(if (totalSum < 0) then Math.abs(totalSum) else totalSum).toFixed(2))
+    totalSum = $('#cash_flow_plan_household_income').sum() - $('.sub_total').sum()
+    $('.cash_flow_plan_remaining').val("$" + Number(if (totalSum < 0) then Math.abs(totalSum) else totalSum).toFixed(2))
     set_negative(totalSum)
 
   percentage = (category) ->
-    percent = ($(".#{category}").sum() / $('#budget_household_income').sum()) * 100
+    percent = ($(".#{category}").sum() / $('#cash_flow_plan_household_income').sum()) * 100
     if isNaN(percent)
       percent = 0
     $("##{category}_percent").val(Number(percent).toFixed(2) + " %")
@@ -48,12 +48,12 @@ $(document).ready ->
     percentage(category)
   )
 
-  $('#budget_household_income').keyup( ->
+  $('#cash_flow_plan_household_income').keyup( ->
     calculate_remaining()
     calculate_percentage()
   )
 
-  $('#budget_household_income').live('keyup', ->
+  $('#cash_flow_plan_household_income').live('keyup', ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
   )
@@ -68,7 +68,7 @@ $(document).ready ->
     checkForErrors($(this), value)
   )
 
-  $('#budget_household_income').blur( ->
+  $('#cash_flow_plan_household_income').blur( ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
     $(this).val(Number(value).toFixed(2)) unless isNaN(value)
@@ -89,4 +89,4 @@ $(document).ready ->
   calculate_total()
   calculate_remaining()
   calculate_percentage()
-  set_negative($('#budget_household_income').sum() - $('.sub_total').sum())
+  set_negative($('#cash_flow_plan_household_income').sum() - $('.sub_total').sum())

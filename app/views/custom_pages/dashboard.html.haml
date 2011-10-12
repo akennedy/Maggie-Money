@@ -1,21 +1,22 @@
 #dashboard
   .content
+    = render 'cash_flow_plans/show'
     .well
       .row
         .span12
           %h3
-            Cash Flow Plans
-            %small= "Last one: #{current_user.budgets.any? ? current_user.budgets.order('date DESC').first.date : 'never'}"
+            Allocated Spending Plans
+            / %small= "Last one: #{current_user.cash_flow_plans.any? ? current_user.cash_flow_plans.order('date DESC').first.date : 'never'}"
         .span3
           .pull-right{:style => 'margin-left: 5px;'}
-            %a.btn.primary{:href => new_budget_path} New &raquo;
+            %a.btn.primary{:href => '#'} New &raquo;
           .pull-right
-            - if current_user.budgets.any?
-              %a.btn.show_list{:'data-list' => 'mcfp'} Show list
-      - if current_user.budgets.any?
-        .row#mcfp_list.hidden
-          .span15
-            = render 'budgets/budgets', :budgets => current_user.budgets.limit(12).order('date DESC')
-            - if current_user.budgets.size > 12
-              .span15
-                %a{:href => budgets_path} show more &raquo;
+            / - if current_user.cash_flow_plans.any?
+            /   %a.btn.show_list{:'data-list' => 'mcfp'} Show list
+      / - if current_user.cash_flow_plans.any?
+      /   .row#mcfp_list.hidden
+      /     .span15
+      /       = render 'cash_flow_plans/cash_flow_plans', :cash_flow_plans => current_user.cash_flow_plans.limit(12).order('date DESC')
+      /       - if current_user.cash_flow_plans.size > 12
+      /         .span15
+      /           %a{:href => cash_flow_plans_path} show more &raquo;

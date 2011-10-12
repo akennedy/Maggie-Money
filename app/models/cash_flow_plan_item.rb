@@ -1,5 +1,5 @@
-class BudgetItem < ActiveRecord::Base
-  belongs_to :budget
+class CashFlowPlanItem < ActiveRecord::Base
+  belongs_to :cash_flow_plan
   belongs_to :user
 
   validates :amount, :numericality => true

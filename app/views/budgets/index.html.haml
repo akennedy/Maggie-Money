@@ -1,7 +1,0 @@
-.budget_page
-  .content
-    .hero-unit
-      %h3 Budgets
-      %div{:style => 'float:right;margin-bottom:18px;'}
-        %a{:class => "btn primary", :href => new_budget_path, :style => 'float:right;'} New Budget &raquo;
-      = render 'budgets', :budgets => @budgets.order('date DESC')

@@ -1,0 +1,21 @@
+%table.zebra-striped
+  %thead
+    %tr
+      %th Date
+      %th Household Income
+      %th Budgeted
+      %th
+      %th
+      %th
+  %tbody
+    - cash_flow_plans.each do |cash_flow_plan|
+      %tr
+        %td= link_to cash_flow_plan.date, cash_flow_plan_path(cash_flow_plan)
+        %td= number_to_currency(cash_flow_plan.household_income)
+        %td= number_to_currency(cash_flow_plan.cash_flow_plan_items.map(&:amount).sum)
+        %td
+          = link_to 'Edit', edit_cash_flow_plan_path(cash_flow_plan)
+        %td
+          = link_to 'Clone', clone_cash_flow_plan_path(cash_flow_plan)
+        %td
+          = link_to 'Delete', cash_flow_plan_path(cash_flow_plan),:method => :delete, :confirm => 'Are You Sure?'

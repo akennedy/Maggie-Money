@@ -10,7 +10,11 @@ MaggieMoney::Application.routes.draw do
 
   match "/dashboard", :to => "custom_pages#dashboard"
 
-  resources :budgets
+  resources :cash_flow_plans do
+    member do
+      get :clone
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
