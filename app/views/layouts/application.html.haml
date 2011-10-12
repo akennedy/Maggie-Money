@@ -37,7 +37,9 @@
                 %a.dropdown-toggle{:href => "javascript:void(0)"}= current_user.email
                 %ul.dropdown-menu
                   %li
-                    %a{:href => 'javascript:void(0)'}Preferences
+                    = link_to 'My Account', edit_user_registration_path
+                  %li
+                    = link_to 'Preferences', 'javascript:void(0)'
                   %li.divider
                   %li
                     %a{:href => sign_out_path, :method => :delete}Logout
