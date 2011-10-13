@@ -30,4 +30,6 @@ group :test do
   gem 'shoulda', '~> 2.11.3'
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'capybara'
 end

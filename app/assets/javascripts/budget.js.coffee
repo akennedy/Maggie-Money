@@ -53,34 +53,12 @@ $(document).ready ->
     calculate_percentage()
   )
 
-  $('#cash_flow_plan_household_income').live('keyup', ->
+  $('#cash_flow_plan_household_income, .sub_total, .actual').live('keyup', ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
   )
 
-  $('.sub_total').live('keyup', ->
-    value = $(this).val().replace(',', '')
-    checkForErrors($(this), value)
-  )
-
-  $('.actual').live('keyup', ->
-    value = $(this).val().replace(',', '')
-    checkForErrors($(this), value)
-  )
-
-  $('#cash_flow_plan_household_income').blur( ->
-    value = $(this).val().replace(',', '')
-    checkForErrors($(this), value)
-    $(this).val(Number(value).toFixed(2)) unless isNaN(value)
-  )
-
-  $('.sub_total').blur( ->
-    value = $(this).val().replace(',', '')
-    checkForErrors($(this), value)
-    $(this).val(Number(value).toFixed(2)) unless isNaN(value)
-  )
-
-  $('.actual').blur( ->
+  $('#cash_flow_plan_household_income, .sub_total, .actual').blur( ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
     $(this).val(Number(value).toFixed(2)) unless isNaN(value)
