@@ -1,3 +1,9 @@
+- content_for :sign_in do
+  =form_tag user_session_path, :class => "pull-right" do
+    =text_field_tag "user[email]", nil, :class => "input-small", :placeholder => "email"
+    =password_field_tag "user[password]", nil, :class => "input-small", :placeholder => "password"
+    %button.btn{:type => "submit"}Sign In
+  
 .content
   .hero-unit
     %h1 Welcome to Maggie Money!

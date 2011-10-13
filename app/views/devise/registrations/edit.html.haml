@@ -1,7 +1,7 @@
 .content
   .hero-unit
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-      = devise_error_messages!
+      = render "shared/error_messages", :target => resource
       .form-stacked
         %fieldset
           %legend
@@ -23,9 +23,9 @@
               = f.password_field :password_confirmation, :class => 'xlarge'
 
           .clearfix
-            = f.label :current_confirmation
+            = f.label :current_password
             .input
-              = f.password_field :current_confirmation, :class => 'xlarge'
+              = f.password_field :current_password, :class => 'xlarge'
               %span.help-inline (we need your current password to confirm your changes)
 
           .actions

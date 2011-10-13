@@ -44,28 +44,15 @@
                   %li
                     %a{:href => sign_out_path, :method => :delete}Logout
           -unless current_user
-            =form_tag user_session_path, :class => "pull-right" do
-              =text_field_tag "user[email]", nil, :class => "input-small", :placeholder => "email"
-              =password_field_tag "user[password]", nil, :class => "input-small", :placeholder => "password"
-              %button.btn{:type => "submit"}Sign In
+            = yield :sign_in
 
     .container
-      - if flash[:success]
-        .alert-message.success.fade.in{"data-alert" => "alert"}
+    .container
+      - flash.each do |key, value|
+        .alert-message.fade.in{:class => "#{key == :notice ? :info : key}", "data-alert" => "alert"}
           %a.close{:href => "#"}x
-          %p=flash[:success]
-      - if flash[:notice]
-        .alert-message.info.fade.in{"data-alert" => "alert"}
-          %a.close{:href => "#"}x
-          %p=flash[:notice]
-      - if flash[:warning]
-        .alert-message.warning.fade.in{"data-alert" => "alert"}
-          %a.close{:href => "#"}x
-          %p=flash[:warning]
-      - if flash[:error]
-        .alert-message.error.fade.in{"data-alert" => "alert"}
-          %a.close{:href => "#"}x
-          %p=flash[:error]
+          %p= value
+
       = yield
       %footer
         %p &copy; Maggie Money 2011

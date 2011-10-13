@@ -30,6 +30,7 @@ GEM
       activesupport (= 3.1.0)
     activesupport (3.1.0)
       multi_json (~> 1.0)
+    addressable (2.2.6)
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
@@ -103,6 +104,8 @@ GEM
       rspec (~> 2.0)
     kaminari (0.12.4)
       rails (>= 3.0.0)
+    launchy (2.0.5)
+      addressable (~> 2.2.6)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mail (2.3.0)
@@ -218,6 +221,7 @@ DEPENDENCIES
   jquery-rails
   json_spec (~> 0.6.0)
   kaminari
+  launchy
   mysql
   pg
   rails (= 3.1.0)
