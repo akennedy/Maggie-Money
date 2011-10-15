@@ -1,48 +1,52 @@
 = form_for @cash_flow_plan do |f|
   .floating_remains{:style => 'float:left;margin:0 0 18px 58px;'}
     %input.cash_flow_plan_remaining.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'width:120px;text-align:center;'}
-  = render "shared/error_messages", :target => @cash_flow_plan
-  %div.input-prepend{:style => 'float:left;margin-bottom:18px;'}
-    %span.add-on $
-    = f.text_field :household_income, :placeholder => 'Household Income', :style => 'width:120px;', :autocomplete => :off
-  %div{:style => 'float:left;margin:0 0 18px 25px;'}
-    = f.text_field :date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :style => 'width:120px;', :value => @cash_flow_plan.date
-  %div{:style => 'float:right;margin-bottom:18px;'}
-    = link_to 'Cancel', :back, :class => 'btn'
-    = f.submit :class => 'btn primary'
-  %table.zebra-striped
-    %thead
-      %tr
-        %th Budgeted Item
-        %th Sub Total
-        %th TOTAL
-        %th Actually Spent
-        %th % OF INCOME
-    %tbody.mcfp_body
-      - CashFlowPlanItem::CATEGORIES.each do |category|
+  .row
+    = render "shared/error_messages", :target => @cash_flow_plan
+  .row
+    %div.input-prepend{:style => 'float:left;margin-bottom:18px;'}
+      %span.add-on $
+      = f.text_field :household_income, :placeholder => 'Household Income', :style => 'width:120px;', :autocomplete => :off
+    %div{:style => 'float:left;margin:0 0 18px 25px;'}
+      = f.text_field :date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :style => 'width:120px;', :value => @cash_flow_plan.date
+    %div{:style => 'float:right;margin-bottom:18px;'}
+      = link_to 'Cancel', :back, :class => 'btn'
+      = f.submit :class => 'btn primary'
+  .row
+    %table.zebra-striped
+      %thead
         %tr
-          %td.major= category.upcase
-          %td
-          %td
-            %input.disabled.total{:type => 'text', :id => "#{category}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category}
-          %td
-          %td
-            %input.disabled.percent{:type => 'text', :id => "#{category}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category}
-
-        = f.fields_for :cash_flow_plan_items, @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category)} do |t|
-          = t.hidden_field :name, :value => t.object.name
-          = t.hidden_field :category, :value => t.object.category
+          %th Budgeted Item
+          %th Sub Total
+          %th TOTAL
+          %th Actually Spent
+          %th % OF INCOME
+      %tbody.mcfp_body
+        - CashFlowPlanItem::CATEGORIES.each do |category|
           %tr
-            %td= t.object.name.humanize
-            %td.input-prepend
-              %span.add-on $
-              = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :autocomplete => :off
+            %td.major= category.upcase
             %td
-            %td.input-prepend
-              %span.add-on $
-              = t.text_field :actual, :class => "actual", :autocomplete => :off
             %td
-              = t.hidden_field :id
-  %div{:style => 'float:right;'}
-    = link_to 'Cancel', :back, :class => 'btn'
-    = f.submit :class => 'btn primary'
+              %input.disabled.total{:type => 'text', :id => "#{category}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category}
+            %td
+            %td
+              %input.disabled.percent{:type => 'text', :id => "#{category}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category}
+
+          = f.fields_for :cash_flow_plan_items, @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category)} do |t|
+            = t.hidden_field :name, :value => t.object.name
+            = t.hidden_field :category, :value => t.object.category
+            %tr
+              %td= t.object.name.humanize
+              %td.input-prepend
+                %span.add-on $
+                = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :placeholder => '0.00', :autocomplete => :off
+              %td
+              %td.input-prepend
+                %span.add-on $
+                = t.text_field :actual, :class => "actual", :placeholder => '0.00', :autocomplete => :off
+              %td
+                = t.hidden_field :id
+  .row
+    %div{:style => 'float:right;'}
+      = link_to 'Cancel', :back, :class => 'btn'
+      = f.submit :class => 'btn primary'

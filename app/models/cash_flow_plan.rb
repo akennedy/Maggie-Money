@@ -1,6 +1,6 @@
 class CashFlowPlan < ActiveRecord::Base
   belongs_to :user
-  has_many :cash_flow_plan_items
+  has_many :cash_flow_plan_items, :dependent => :destroy
   accepts_nested_attributes_for :cash_flow_plan_items
 
   validates :household_income, :presence => true

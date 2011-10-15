@@ -61,7 +61,7 @@ $(document).ready ->
   $('#cash_flow_plan_household_income, .sub_total, .actual').blur( ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
-    $(this).val(Number(value).toFixed(2)) unless isNaN(value)
+    $(this).val(Number(value).toFixed(2)) unless isNaN(value) or value is ''
   )
 
   calculate_total()

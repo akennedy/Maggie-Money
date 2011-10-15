@@ -71,7 +71,7 @@ private
 
   def build_cash_flow_plan_items
     CashFlowPlanItem::ITEMS.each do |ti|
-      @cash_flow_plan.cash_flow_plan_items.build(:name => ti[:name], :category => ti[:category], :amount => '0.00', :actual => '0.00')
+      @cash_flow_plan.cash_flow_plan_items.build(:name => ti[:name], :category => ti[:category])
     end
   end
 end

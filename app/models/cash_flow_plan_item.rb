@@ -2,8 +2,8 @@ class CashFlowPlanItem < ActiveRecord::Base
   belongs_to :cash_flow_plan
   belongs_to :user
 
-  validates :amount, :numericality => true
-  validates :actual, :numericality => true
+  validates :amount, :numericality => true, :allow_blank => true
+  validates :actual, :numericality => true, :allow_blank => true
 
   CATEGORIES = ['charity', 'saving', 'housing', 'utilities', 'food', 'transportation', 'clothing', 'medical', 'personal', 'recreation', 'debts']
   ITEMS = [
