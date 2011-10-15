@@ -13,39 +13,7 @@
       = link_to 'Cancel', :back, :class => 'btn'
       = f.submit :class => 'btn primary'
   .row
-    %table.zebra-striped
-      %thead
-        %tr
-          %th Budgeted Item
-          %th Sub Total
-          %th TOTAL
-          %th Actually Spent
-          %th % OF INCOME
-      %tbody.mcfp_body
-        - CashFlowPlanItem::CATEGORIES.each do |category|
-          %tr
-            %td.major= category.upcase
-            %td
-            %td
-              %input.disabled.total{:type => 'text', :id => "#{category}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category}
-            %td
-            %td
-              %input.disabled.percent{:type => 'text', :id => "#{category}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category}
-
-          = f.fields_for :cash_flow_plan_items, @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category)} do |t|
-            = t.hidden_field :name, :value => t.object.name
-            = t.hidden_field :category, :value => t.object.category
-            %tr
-              %td= t.object.name.humanize
-              %td.input-prepend
-                %span.add-on $
-                = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :placeholder => '0.00', :autocomplete => :off
-              %td
-              %td.input-prepend
-                %span.add-on $
-                = t.text_field :actual, :class => "actual", :placeholder => '0.00', :autocomplete => :off
-              %td
-                = t.hidden_field :id
+    = render 'table', :f => f
   .row
     %div{:style => 'float:right;'}
       = link_to 'Cancel', :back, :class => 'btn'
