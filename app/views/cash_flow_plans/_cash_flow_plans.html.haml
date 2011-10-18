@@ -14,8 +14,11 @@
         %td= number_to_currency(cash_flow_plan.household_income)
         %td= number_to_currency(cash_flow_plan.cash_flow_plan_items.map(&:amount).sum)
         %td
-          = link_to 'Edit', edit_cash_flow_plan_path(cash_flow_plan)
+          %a{:href => edit_cash_flow_plan_path(cash_flow_plan), :class => 'ui-icon ui-icon-pencil', :title => 'Edit', :style => 'display:inline-block;'}
+          = link_to 'Edit', edit_cash_flow_plan_path(cash_flow_plan), :title => 'Edit'
         %td
-          = link_to 'Clone', clone_cash_flow_plan_path(cash_flow_plan)
+          %a{:href => clone_cash_flow_plan_path(cash_flow_plan), :class => 'ui-icon ui-icon-copy', :title => 'Clone', :style => 'display:inline-block;'}
+          = link_to 'Clone', clone_cash_flow_plan_path(cash_flow_plan), :title => 'Clone'
         %td
-          = link_to 'Delete', cash_flow_plan_path(cash_flow_plan),:method => :delete, :confirm => 'Are You Sure?'
+          %a{:href => cash_flow_plan_path(cash_flow_plan),:method => :delete, :confirm => "Are You Sure?  This action cannot be undone.", :class => 'ui-icon ui-icon-trash', :title => 'Delete', :style => 'display:inline-block;'}
+          = link_to 'Delete', cash_flow_plan_path(cash_flow_plan),:method => :delete, :confirm => "Are You Sure?  This action cannot be undone.", :title => 'Delete'
