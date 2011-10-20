@@ -1,0 +1,7 @@
+.allocated_spending_plan_page
+  .content
+    .hero-unit
+      %h3 Allocated Spending Plans
+      %div{:style => 'float:right;margin-bottom:18px;'}
+        %a{:class => "btn primary", :href => new_allocated_spending_plan_path, :style => 'float:right;'} New Allocated Spending Plan &raquo;
+      = render 'allocated_spending_plans', :allocated_spending_plans => @allocated_spending_plans.order('date DESC')

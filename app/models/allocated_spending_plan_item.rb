@@ -1,9 +1,11 @@
-class CashFlowPlanItem < ActiveRecord::Base
-  belongs_to :cash_flow_plan
+class AllocatedSpendingPlanItem < ActiveRecord::Base
+  belongs_to :allocated_spending_plan
   belongs_to :user
 
-  validates :amount, :numericality => true, :allow_blank => true
-  validates :actual, :numericality => true, :allow_blank => true
+  validates :week_1_amount, :numericality => true, :allow_blank => true
+  validates :week_2_amount, :numericality => true, :allow_blank => true
+  validates :week_3_amount, :numericality => true, :allow_blank => true
+  validates :week_4_amount, :numericality => true, :allow_blank => true
 
   CATEGORIES = [
     {:name => 'charity', :items => ['gifts']},
@@ -18,7 +20,6 @@ class CashFlowPlanItem < ActiveRecord::Base
     {:name => 'recreation', :items => ['entertainment', 'vacation']},
     {:name => 'debts', :items => ['visa_1', 'visa_2', 'master_card_1', 'master_card_2', 'american_express', 'discover_card', 'gas_card_1', 'gas_card_2', 'department_store_1', 'department_store_2', 'finance_company_1', 'finance_company_2', 'credit_line', 'student_loan_1', 'student_loan_2']}
   ]
-
 
   def category?(category_name)
     read_attribute(:category) == category_name

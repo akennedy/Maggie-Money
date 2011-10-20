@@ -1,0 +1,29 @@
+.allocated_spending_plan_page
+  .content
+    .hero-unit
+      %table.zebra-striped
+        %thead
+          %tr
+            %th Budgeted Item
+            %th Sub Total
+            %th TOTAL
+            %th Actually Spent
+            %th % OF INCOME
+        %tbody.mcfp_body
+          - CashFlowPlanItem::CATEGORIES.each do |category|
+            %tr
+              %td.major= category[:name].upcase
+              %td
+              %td=# number_to_currency(@allocated_spending_plan.total(category[:name]))
+              %td
+              %td=# number_to_currency(@allocated_spending_plan.percent(category[:name]))
+
+            - @allocated_spending_plan.allocated_spending_plan_items.select{|item| item.category?(category[:name])}.each do |aspi|
+              %input{:type => 'hidden'}
+              %input{:type => 'hidden'}
+              %tr
+                %td= aspi.name.humanize
+                %td= number_to_currency(aspi.amount)
+                %td
+                %td= number_to_currency(aspi.actual)
+                %td

@@ -2,13 +2,13 @@ $(document).ready ->
 
   $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' })
 
-  set_negative = (totalSum) ->
-    if Number(totalSum) < 0
-      $('.cash_flow_plan_remaining').removeClass('positive').addClass('negative')
-    else if Number(totalSum) > 0
-      $('.cash_flow_plan_remaining').removeClass('negative').addClass('positive')
+  set_negative = (remaining, remaining_field) ->
+    if Number(remaining) < 0
+      $(".#{remaining_field}").removeClass('positive').addClass('negative')
+    else if Number(remaining) > 0
+      $(".#{remaining_field}").removeClass('negative').addClass('positive')
     else
-      $('.cash_flow_plan_remaining').removeClass('negative').removeClass('positive')
+      $(".#{remaining_field}").removeClass('negative').removeClass('positive')
 
   calculate_total = ->
     $('.total').each( ->
@@ -18,12 +18,17 @@ $(document).ready ->
     )
 
   calculate_remaining = ->
-    totalSum = $('#cash_flow_plan_household_income').sum() - $('.sub_total').sum()
-    $('.cash_flow_plan_remaining').val("$" + Number(if (totalSum < 0) then Math.abs(totalSum) else totalSum).toFixed(2))
-    set_negative(totalSum)
+    remaining = $('.household_income').sum() - $('.sub_total').sum()
+    $('.remaining').val("$" + Number(if (remaining < 0) then Math.abs(remaining) else remaining).toFixed(2))
+    set_negative(remaining, 'remaining')
+
+  calculate_weekly_remaining = (week, weekSum) ->
+    remaining = $(".#{week}_income").val() - weekSum
+    $(".#{week}_remaining").val("$" + Number(if (remaining < 0) then Math.abs(remaining) else remaining).toFixed(2))
+    set_negative(remaining, "#{week}_remaining")
 
   percentage = (category) ->
-    percent = ($(".#{category}").sum() / $('#cash_flow_plan_household_income').sum()) * 100
+    percent = ($(".#{category}").sum() / $('.household_income').sum()) * 100
     if isNaN(percent)
       percent = 0
     $("##{category}_percent").val(Number(percent).toFixed(2) + " %")
@@ -48,17 +53,23 @@ $(document).ready ->
     percentage(category)
   )
 
-  $('#cash_flow_plan_household_income').keyup( ->
+  $('.week_sub_total, .week_income').keyup( ->
+    week = $(this).data('week')
+    weekSum = $(".#{week}_sub_total").sum()
+    calculate_weekly_remaining(week, weekSum)
+  )
+
+  $('.household_income').keyup( ->
     calculate_remaining()
     calculate_percentage()
   )
 
-  $('#cash_flow_plan_household_income, .sub_total, .actual').live('keyup', ->
+  $('.income, .sub_total, .actual').live('keyup', ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
   )
 
-  $('#cash_flow_plan_household_income, .sub_total, .actual').blur( ->
+  $('.income, .sub_total, .actual').blur( ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
     $(this).val(Number(value).toFixed(2)) unless isNaN(value) or value is ''
@@ -67,4 +78,5 @@ $(document).ready ->
   calculate_total()
   calculate_remaining()
   calculate_percentage()
-  set_negative($('#cash_flow_plan_household_income').sum() - $('.sub_total').sum())
+  for week in ['week_1', 'week_2', 'week_3', 'week_4']
+    calculate_weekly_remaining(week, $(".#{week}_sub_total").sum())

@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013022016) do
+ActiveRecord::Schema.define(:version => 20111020013032) do
+
+  create_table "allocated_spending_plan_items", :force => true do |t|
+    t.integer  "allocated_spending_plan_id"
+    t.string   "name"
+    t.string   "category"
+    t.decimal  "week_1_amount",              :precision => 10, :scale => 2
+    t.decimal  "week_2_amount",              :precision => 10, :scale => 2
+    t.decimal  "week_3_amount",              :precision => 10, :scale => 2
+    t.decimal  "week_4_amount",              :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "allocated_spending_plans", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "date"
+    t.date     "week_1_date"
+    t.date     "week_2_date"
+    t.date     "week_3_date"
+    t.date     "week_4_date"
+    t.decimal  "household_income", :precision => 10, :scale => 2
+    t.decimal  "week_1_income",    :precision => 10, :scale => 2
+    t.decimal  "week_2_income",    :precision => 10, :scale => 2
+    t.decimal  "week_3_income",    :precision => 10, :scale => 2
+    t.decimal  "week_4_income",    :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cash_flow_plan_items", :force => true do |t|
     t.integer  "cash_flow_plan_id"

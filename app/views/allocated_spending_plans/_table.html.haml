@@ -1,0 +1,76 @@
+%table.zebra-striped
+  %thead
+    %tr
+      %th Budgeted Item
+      %th Week 1
+      %th Week 2
+      %th Week 3
+      %th Week 4
+  %tbody.asp_body
+    %tr
+      %td
+      %td= f.text_field :week_1_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_1_date
+      %td= f.text_field :week_2_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_2_date
+      %td= f.text_field :week_3_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_3_date
+      %td= f.text_field :week_4_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_4_date
+    %tr
+      %td
+      %td.input-prepend
+        %span.add-on $
+        = f.text_field :week_1_income, :placeholder => 'Income', :class => 'income week_income week_1_income', :'data-week' => "week_1", :autocomplete => :off
+      %td.input-prepend
+        %span.add-on $
+        = f.text_field :week_2_income, :placeholder => 'Income', :class => 'income week_income week_2_income', :'data-week' => "week_2", :autocomplete => :off
+      %td.input-prepend
+        %span.add-on $
+        = f.text_field :week_3_income, :placeholder => 'Income', :class => 'income week_income week_3_income', :'data-week' => "week_3", :autocomplete => :off
+      %td.input-prepend
+        %span.add-on $
+        = f.text_field :week_4_income, :placeholder => 'Income', :class => 'income week_income week_4_income', :'data-week' => "week_4", :autocomplete => :off
+    %tr
+      %td
+      %td
+        %input.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'text-align:center;width:105px;', :class => 'week_1_remaining'}
+      %td
+        %input.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'text-align:center;width:105px;', :class => 'week_2_remaining'}
+      %td
+        %input.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'text-align:center;width:105px;', :class => 'week_3_remaining'}
+      %td
+        %input.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'text-align:center;width:105px;', :class => 'week_4_remaining'}
+    - AllocatedSpendingPlanItem::CATEGORIES.each do |category|
+      %tr
+        %td.major= category[:name].upcase
+        %td
+        %td
+        %td
+        %td
+
+      = f.fields_for :allocated_spending_plan_items, @allocated_spending_plan.allocated_spending_plan_items.select{|item| item.category?(category[:name])} do |t|
+        = t.hidden_field :name, :value => t.object.name
+        = t.hidden_field :category, :value => t.object.category
+        %tr
+          %td
+            = t.object.name.humanize
+            = t.hidden_field :id
+          %td.input-prepend
+            %span.add-on $
+            = t.text_field :week_1_amount, :class => "sub_total #{t.object.category} week_sub_total week_1_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_1", :placeholder => '0.00', :autocomplete => :off
+          %td.input-prepend
+            %span.add-on $
+            = t.text_field :week_2_amount, :class => "sub_total #{t.object.category} week_sub_total week_2_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_2", :placeholder => '0.00', :autocomplete => :off
+          %td.input-prepend
+            %span.add-on $
+            = t.text_field :week_3_amount, :class => "sub_total #{t.object.category} week_sub_total week_3_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_3", :placeholder => '0.00', :autocomplete => :off
+          %td.input-prepend
+            %span.add-on $
+            = t.text_field :week_4_amount, :class => "sub_total #{t.object.category} week_sub_total week_4_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_4", :placeholder => '0.00', :autocomplete => :off
+    %tr
+      %td
+      %td
+        %input.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'text-align:center;width:105px;', :class => 'week_1_remaining'}
+      %td
+        %input.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'text-align:center;width:105px;', :class => 'week_2_remaining'}
+      %td
+        %input.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'text-align:center;width:105px;', :class => 'week_3_remaining'}
+      %td
+        %input.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'text-align:center;width:105px;', :class => 'week_4_remaining'}

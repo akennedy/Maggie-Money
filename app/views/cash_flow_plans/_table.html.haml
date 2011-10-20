@@ -6,22 +6,24 @@
       %th TOTAL
       %th Actually Spent
       %th % OF INCOME
-  %tbody.mcfp_body
+  %tbody.cfp_body
     - CashFlowPlanItem::CATEGORIES.each do |category|
       %tr
-        %td.major= category.upcase
+        %td.major= category[:name].upcase
         %td
         %td
-          %input.disabled.total{:type => 'text', :id => "#{category}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category}
+          %input.disabled.total{:type => 'text', :id => "#{category[:name]}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category[:name]}
         %td
         %td
-          %input.disabled.percent{:type => 'text', :id => "#{category}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category}
+          %input.disabled.percent{:type => 'text', :id => "#{category[:name]}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category[:name]}
 
-      = f.fields_for :cash_flow_plan_items, @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category)} do |t|
+      = f.fields_for :cash_flow_plan_items, @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category[:name])} do |t|
         = t.hidden_field :name, :value => t.object.name
         = t.hidden_field :category, :value => t.object.category
         %tr
-          %td= t.object.name.humanize
+          %td
+            = t.object.name.humanize
+            = t.hidden_field :id
           %td.input-prepend
             %span.add-on $
             = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :placeholder => '0.00', :autocomplete => :off
@@ -30,4 +32,3 @@
             %span.add-on $
             = t.text_field :actual, :class => "actual", :placeholder => '0.00', :autocomplete => :off
           %td
-            = t.hidden_field :id

@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   has_many :cash_flow_plans
   has_many :cash_flow_plan_items, :through => :cash_flow_plans
 
+  has_many :allocated_spending_plans
+  has_many :allocated_spending_plan_items, :through => :allocated_spending_plans
+
 end
