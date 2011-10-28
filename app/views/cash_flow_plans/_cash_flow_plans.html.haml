@@ -12,7 +12,7 @@
       %tr
         %td= link_to cash_flow_plan.date, cash_flow_plan_path(cash_flow_plan)
         %td= number_to_currency(cash_flow_plan.household_income)
-        %td= number_to_currency(cash_flow_plan.cash_flow_plan_items.map(&:amount).sum)
+        %td=# number_to_currency(cash_flow_plan.cash_flow_plan_items.map(&:amount).sum)
         %td
           %a{:href => edit_cash_flow_plan_path(cash_flow_plan), :class => 'ui-icon ui-icon-pencil', :title => 'Edit', :style => 'display:inline-block;'}
           = link_to 'Edit', edit_cash_flow_plan_path(cash_flow_plan), :title => 'Edit'

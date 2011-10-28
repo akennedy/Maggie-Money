@@ -12,13 +12,13 @@
         %tbody.mcfp_body
           - CashFlowPlanItem::CATEGORIES.each do |category|
             %tr
-              %td.major= category.upcase
+              %td.major= category[:name].upcase
               %td
               %td=# number_to_currency(@cash_flow_plan.total(category))
               %td
               %td=# number_to_currency(@cash_flow_plan.percent(category))
 
-            - @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category)}.each do |cfpi|
+            - @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category[:name])}.each do |cfpi|
               %input{:type => 'hidden'}
               %input{:type => 'hidden'}
               %tr
