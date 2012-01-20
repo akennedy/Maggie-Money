@@ -1,34 +1,31 @@
-%table.zebra-striped
-  %thead
-    %tr
-      %th Budgeted Item
-      %th Sub Total
-      %th TOTAL
-      %th Actually Spent
-      %th % OF INCOME
-  %tbody.cfp_body
-    - CashFlowPlanItem::CATEGORIES.each do |category|
+- CashFlowPlanItem::CATEGORIES.each do |category|
+  %table.zebra-striped
+    %thead
       %tr
-        %td.major= category[:name].upcase
-        %td
-        %td
-          %input.disabled.total{:type => 'text', :id => "#{category[:name]}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category[:name]}
-        %td
-        %td
-          %input.disabled.percent{:type => 'text', :id => "#{category[:name]}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category[:name]}
-
+        %th.major
+          %span.green
+            = category[:name].upcase
+        %th.center Budget
+        %th.center Actually Spent
+    %tbody.cfp_body
       = f.fields_for :cash_flow_plan_items, @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category[:name])} do |t|
         = t.hidden_field :name, :value => t.object.name
         = t.hidden_field :category, :value => t.object.category
         %tr
-          %td
-            = t.object.name.humanize
+          %td{:width => '40%'}
+            %span.green
+              = t.object.name.humanize
             = t.hidden_field :id
-          %td.input-prepend
-            %span.add-on $
-            = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :placeholder => '0.00', :autocomplete => :off
-          %td
-          %td.input-prepend
-            %span.add-on $
+          %td.input-prepend{:width => '30%'}
+            %span.add-on{:style => 'margin-left: 20%;'} $
+            = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :placeholder => '0.00', :autocomplete => :off, :style => 'float:left;'
+          %td.input-prepend{:width => '30%'}
+            %span.add-on{:style => 'margin-left: 20%;'} $
             = t.text_field :actual, :class => "actual", :placeholder => '0.00', :autocomplete => :off
-          %td
+      %tr
+        %td.major Total
+        %td
+          %input.disabled.total{:type => 'text', :id => "#{category[:name]}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category[:name], :style => 'margin-left: 20%;'}
+        %td
+        / %td
+        /   %input.disabled.percent{:type => 'text', :id => "#{category[:name]}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category[:name]}

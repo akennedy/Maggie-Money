@@ -48,7 +48,7 @@ $(document).ready ->
   $('.sub_total').keyup( ->
     category = $(this).data('category')
     totalSum = $(".#{category}").sum()
-    $("##{category}_total").val(Number(totalSum).toFixed(2))
+    $("##{category}_total").val("$" + Number(totalSum).toFixed(2))
     calculate_remaining()
     percentage(category)
   )
