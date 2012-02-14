@@ -10,7 +10,6 @@ gem 'cancan'
 gem 'jquery-rails'
 gem 'therubyracer-heroku'
 gem 'deep_cloneable', '~> 1.3.0'
-gem 'doc_raptor', '~> 0.2.0'
 gem 'newrelic_rpm'
 
 # Gems used only for assets and not required
@@ -31,7 +30,7 @@ group :test do
   gem 'shoulda', '~> 2.11.3'
   gem 'cucumber-rails'
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 1.4.0"
   gem 'capybara'
   gem 'launchy'
 end

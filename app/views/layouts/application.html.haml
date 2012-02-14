@@ -13,46 +13,47 @@
       <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
-      <style type="text/css">
-        body {
-          padding-top: 60px;
-        }
-      </style>
   %body
-    .topbar{:'data-dropdown' => "dropdown"}
-      .fill
+    .navbar.navbar-fixed-top
+      .navbar-inner
         .container
+          %a{:class => 'btn btn-navbar', :'data-toggle' => 'collapse', :'data-target' => '.nav-collapse'}
+            %span{:class => 'icon-bar'}
+            %span{:class => 'icon-bar'}
+            %span{:class => 'icon-bar'}
           %a.brand{:href=> root_path}Maggie Money
-          -if current_user
-            %ul.nav
-              %li
-                %a{:href => dashboard_path}Dashboard
-              %li.dropdown
-                %a.dropdown-toggle{:href => "javascript:void(0)"}Worksheets
-                %ul.dropdown-menu
-                  %li
-                    %a{:href => cash_flow_plans_path}Cash Flow Plans
-                  %li
-                    %a{:href => allocated_spending_plans_path}Allocated Spending Plans
-            %ul.nav.secondary-nav
-              %li.dropdown
-                %a.dropdown-toggle{:href => "javascript:void(0)"}= current_user.email
-                %ul.dropdown-menu
-                  %li
-                    = link_to 'My Account', edit_user_registration_path
-                  %li
-                    = link_to 'Preferences', 'javascript:void(0)'
-                  %li.divider
-                  %li
-                    %a{:href => sign_out_path, :method => :delete}Logout
-          -unless current_user
-            = yield :sign_in
+          .nav-collapse
+            -if current_user
+              %ul.nav
+                %li
+                  %a{:href => dashboard_path}Dashboard
+                %li.dropdown
+                  %a.dropdown-toggle{:'data-toggle' => "dropdown", :href => "#"}
+                    Worksheets
+                    %b{:class => "caret"}
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => cash_flow_plans_path}Cash Flow Plans
+                    %li
+                      %a{:href => allocated_spending_plans_path}Allocated Spending Plans
+              %ul.nav.pull-right
+                %li.dropdown
+                  %a.dropdown-toggle{:'data-toggle' => "dropdown", :href => "#"}
+                    = current_user.email
+                    %b{:class => "caret"}
+                  %ul.dropdown-menu
+                    %li
+                      = link_to 'My Account', edit_user_registration_path
+                    %li
+                      = link_to 'Preferences', 'javascript:void(0)'
+                    %li.divider
+                    %li
+                      %a{:href => sign_out_path, :method => :delete}Logout
 
-    .container
-    .container
+    .container{:style => 'margin-top: 60px;'}
       - flash.each do |key, value|
-        .alert-message.fade.in{:class => "#{key == :notice ? :info : key}", "data-alert" => "alert"}
-          %a.close{:href => "#"}x
+        .alert.fade.in{:class => "#{key == :notice ? :info : key}", "data-alert" => "alert"}
+          %a.close{:'data-dismiss' => "alert", :href => "#"}x
           %p= value
 
       = yield
