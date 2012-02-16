@@ -1,23 +1,16 @@
-.content
-  .hero-unit
-    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-      = render "shared/error_messages", :target => resource
-      = f.hidden_field :reset_password_token
-      .form-stacked
-        %fieldset
-          %legend Change your password
-          .clearfix
-            = f.label :password, "New Password"
-            .input
-              = f.password_field :password, :class => 'xlarge'
+.well
+  %h3 Change your password
+  %hr
+  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+    = render "shared/error_messages", :target => resource
+    = f.hidden_field :reset_password_token
+    = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
+    %br
+    = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
 
-          .clearfix
-            = f.label :password_confirmation, "Confirm new password"
-            .input
-              = f.password_field :password_confirmation, :class => 'xlarge'
+    .form-actions
+      %button.btn.btn-primary{:type => 'submit'} Change my password
+      = link_to 'Cancel', :back, :class => 'btn'
 
-          .actions
-            = f.submit "Change my password", :class => 'btn primary'
-
-          %p
-            = render 'devise/shared/links'
+  %p
+    = render 'devise/shared/links'

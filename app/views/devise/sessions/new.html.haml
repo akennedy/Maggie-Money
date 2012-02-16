@@ -1,25 +1,19 @@
-.content
-  .hero-unit
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      .form-stacked
-        %fieldset
-          %legend Sign in
-          .clearfix
-            = f.label :email
-            %div.input
-              = f.email_field :email, :class => 'xlarge'
-          .clearfix
-            = f.label :password
-            .input
-              = f.password_field :password, :class => 'xlarge'
-          - if devise_mapping.rememberable?
-            .clearfix
-              .input
-                = f.check_box :remember_me
-                = f.label :remember_me, :style => 'display:inline;'
+.well
+  %h3 Sign In
+  %hr
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
+    %br
+    = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
+    - if devise_mapping.rememberable?
+      .clearfix
+        .input
+          = f.check_box :remember_me
+          = f.label :remember_me, :style => 'display:inline;'
 
-          .actions
-            = f.submit "Sign in", :class => 'btn primary'
+    .form-actions
+      %button.btn.btn-primary{:type => 'submit'} Sign in
+      = link_to 'Cancel', :back, :class => 'btn'
 
-          %p
-            = render 'devise/shared/links'
+  %p
+    = render 'devise/shared/links'

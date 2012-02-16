@@ -49,6 +49,8 @@
                     %li.divider
                     %li
                       %a{:href => sign_out_path, :method => :delete}Logout
+            - unless current_user
+              = yield :sign_in
 
     .container{:style => 'margin-top: 60px;'}
       - flash.each do |key, value|
@@ -57,5 +59,6 @@
           %p= value
 
       = yield
+      %hr
       %footer
         %p &copy; Maggie Money 2011

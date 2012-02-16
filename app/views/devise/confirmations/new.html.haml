@@ -1,17 +1,13 @@
-.content
-  .hero-unit
-    = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
-      = render "shared/error_messages", :target => resource
-      .form-stacked
-        %fieldset
-          %legend Resend confirmation instructions
-          .clearfix
-            = f.label :email
-            %div.input
-              = f.email_field :email, :class => 'xlarge'
+.well
+  %h3 Resend confirmation instructions
+  %hr
+  = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+    = render "shared/error_messages", :target => resource
+    = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
 
-          .actions
-            = f.submit "Resend confirmation instructions", :class => 'btn primary'
+    .form-actions
+      %button.btn.btn-primary{:type => 'text'} Resend confirmation instructions
+      = link_to 'Cancel', :back, :class => 'btn'
 
-          %p
-            = render 'devise/shared/links'
+  %p
+    = render 'devise/shared/links'

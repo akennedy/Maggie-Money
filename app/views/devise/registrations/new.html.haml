@@ -1,26 +1,17 @@
-.content
-  .hero-unit
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-      = render "shared/error_messages", :target => resource
-      .form-stacked
-        %fieldset
-          %legend Sign up Right Now
-          .clearfix
-            = f.label :email
-            %div.input
-              = f.email_field :email, :class => 'xlarge'
-          .clearfix
-            = f.label :password
-            .input
-              = f.password_field :password, :class => 'xlarge'
+.well
+  %h3 Sign up
+  %hr
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = render "shared/error_messages", :target => resource
+    = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
+    %br
+    = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
+    %br
+    = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
 
-          .clearfix
-            = f.label :password_confirmation
-            .input
-              = f.password_field :password_confirmation, :class => 'xlarge'
+    .form-actions
+      %button.btn.btn-primary{:type => 'submit'} Sign up
+      = link_to 'Cancel', :back, :class => 'btn'
 
-          .actions
-            = f.submit "Sign up", :class => 'btn primary'
-
-          %p
-            = render 'devise/shared/links'
+  %p
+    = render 'devise/shared/links'

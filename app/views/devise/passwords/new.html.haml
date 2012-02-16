@@ -1,17 +1,13 @@
-.content
-  .hero-unit
-    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-      = render "shared/error_messages", :target => resource
-      .form-stacked
-        %fieldset
-          %legend Forgot your password?
-          .clearfix
-            = f.label :email
-            %div.input
-              = f.email_field :email, :class => 'xlarge'
+.well
+  %h3 Forgot your password?
+  %hr
+  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+    = render "shared/error_messages", :target => resource
+    = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
 
-          .actions
-            = f.submit "Send me reset password instructions", :class => 'btn primary'
+    .form-actions
+      %button.btn.btn-primary{:type => 'submit'} Send me reset password instructions
+      = link_to 'Cancel', :back, :class => 'btn'
 
-          %p
-            = render 'devise/shared/links'
+  %p
+    = render 'devise/shared/links'

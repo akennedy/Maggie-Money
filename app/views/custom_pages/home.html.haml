@@ -1,8 +1,8 @@
 - content_for :sign_in do
-  =form_tag user_session_path, :class => "pull-right" do
-    =text_field_tag "user[email]", nil, :class => "input-small", :placeholder => "email"
-    =password_field_tag "user[password]", nil, :class => "input-small", :placeholder => "password"
-    %button.btn{:type => "submit"}Sign In
+  =form_tag user_session_path, :class => "pull-right form-inline", :style => 'margin:0 0;' do
+    =text_field_tag "user[email]", nil, :class => "input-small", :style => 'margin-top:5px;', :placeholder => "Email..."
+    =password_field_tag "user[password]", nil, :class => "input-small", :style => 'margin-top:5px;', :placeholder => "Password..."
+    =submit_tag "Go", :class => 'btn'
 
 .hero-unit
   %h1 Welcome to Maggie Money!
@@ -13,7 +13,7 @@
       %a{:class => "btn btn-info btn-large", :href => dashboard_path}
         %i{:class => 'icon-home icon-white', :style => 'margin-top: 2px;'}
         Dashboard
-      %a{:class => "btn btn-primary btn-large", :href => new_cash_flow_plan_path} Get Started &raquo;
+      %a{:class => "btn btn-primary btn-large", :href => new_cash_flow_plan_path} Start
   - else
     %p
       %a{:class => "btn btn-primary btn-large", :href => new_user_session_path}
