@@ -1,9 +1,8 @@
 - if target.errors.any?
-  .alert-message.block-message.error{:"data-alert" => "alert"}
-    %a.close{:href => "javascript:void(0)"}×
-    %p
-      %strong
-        = "#{pluralize(target.errors.count, "error")} prohibited this record from being saved:"
+  .alert.alert-block.alert-error
+    %a.close{:'data-dismiss' => "alert"}×
+    %h4.alert-heading
+      = "#{pluralize(target.errors.count, "error")} prohibited this record from being saved:"
     %ul
       - target.errors.full_messages.each do |msg|
         %li= msg

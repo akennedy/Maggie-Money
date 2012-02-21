@@ -54,9 +54,11 @@
 
     .container{:style => 'margin-top: 60px;'}
       - flash.each do |key, value|
-        .alert.fade.in{:class => "#{key == :notice ? :info : key}", "data-alert" => "alert"}
-          %a.close{:'data-dismiss' => "alert", :href => "#"}x
-          %p= value
+        .alert.fade.in{:class => alert_class(key)}
+          %a.close{:'data-dismiss' => "alert"}x
+          %strong
+            = alert_leader(key)
+          = value
 
       = yield
       %hr

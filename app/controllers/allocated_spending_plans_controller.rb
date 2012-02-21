@@ -48,7 +48,7 @@ class AllocatedSpendingPlansController < ApplicationController
     if @allocated_spending_plan.update_attributes(params[:allocated_spending_plan])
       flash[:success] = 'Successfully updated Allocated Spending Plan'
     else
-      flash[:notice] = 'Error updating Allocated Spending Plan'
+      flash[:error] = 'Error updating Allocated Spending Plan'
     end
     respond_with @allocated_spending_plan, :location => dashboard_path
   end
@@ -58,7 +58,7 @@ class AllocatedSpendingPlansController < ApplicationController
     if @allocated_spending_plan.destroy
       flash[:success] = 'Successfully deleted Allocated Spending Plan'
     else
-      flash[:notice] = 'Error deleting Allocated Spending Plan'
+      flash[:error] = 'Error deleting Allocated Spending Plan'
     end
     respond_with @allocated_spending_plan, :location => dashboard_path
   end

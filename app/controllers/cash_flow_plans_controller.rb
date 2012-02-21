@@ -32,10 +32,11 @@ class CashFlowPlansController < ApplicationController
     @cash_flow_plan = current_user.cash_flow_plans.build(params[:cash_flow_plan])
     if @cash_flow_plan.save
       flash[:success] = 'Successfully created Cash Flow Plan'
+      redirect_to (params[:commit] == 'Save' ? edit_cash_flow_plan_path(@cash_flow_plan) : dashboard_path)
     else
       flash[:error] = 'Error creating Cash Flow Plan'
+      render :action => :new
     end
-    respond_with @cash_flow_plan, :location => dashboard_path
   end
 
   def edit
@@ -47,10 +48,11 @@ class CashFlowPlansController < ApplicationController
     authorize! :update, @cash_flow_plan
     if @cash_flow_plan.update_attributes(params[:cash_flow_plan])
       flash[:success] = 'Successfully updated Cash Flow Plan'
+      redirect_to (params[:commit] == 'Save' ? edit_cash_flow_plan_path(@cash_flow_plan) : dashboard_path)
     else
-      flash[:notice] = 'Error updating Cash Flow Plan'
+      flash[:error] = 'Error updating Cash Flow Plan'
+      render :action => :edit
     end
-    respond_with @cash_flow_plan, :location => dashboard_path
   end
 
   def destroy
@@ -58,7 +60,7 @@ class CashFlowPlansController < ApplicationController
     if @cash_flow_plan.destroy
       flash[:success] = 'Successfully deleted Cash Flow Plan'
     else
-      flash[:notice] = 'Error deleting Cash Flow Plan'
+      flash[:error] = 'Error deleting Cash Flow Plan'
     end
     respond_with @cash_flow_plan, :location => dashboard_path
   end

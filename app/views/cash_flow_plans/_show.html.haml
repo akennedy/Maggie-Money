@@ -1,19 +1,25 @@
 .well
   .row
-    .span12
+    .span8
       %h3
         Cash Flow Plans
         %small= "Last one: #{current_user.cash_flow_plans.any? ? current_user.cash_flow_plans.order('date DESC').first.date : 'never'}"
     .span3
       .pull-right{:style => 'margin-left: 5px;'}
-        %a.btn.primary{:href => new_cash_flow_plan_path} New &raquo;
+        %a.btn.btn-primary{:href => new_cash_flow_plan_path}
+          New
+          %i.icon-chevron-right.icon-white
       .pull-right
         - if current_user.cash_flow_plans.any?
-          %a.btn.show_list{:'data-list' => 'cfp'} Show list
+          %a.btn.show_list{:'data-list' => 'cfp'}
+            %i.icon-list
+
   - if current_user.cash_flow_plans.any?
-    .row#cfp_list.hidden
-      .span15
+    .row#cfp_list.hide{:style => 'margin-top: 15px;'}
+      .span11
         = render 'cash_flow_plans/cash_flow_plans', :cash_flow_plans => current_user.cash_flow_plans.limit(12).order('date DESC')
-        - if current_user.cash_flow_plans.size > 12
-          .span15
-            %a{:href => cash_flow_plans_path} show more &raquo;
+      - if current_user.cash_flow_plans.size > 12
+        .span11
+          %a.btn{:href => cash_flow_plans_path}
+            %i.icon-eye-open
+            View More
