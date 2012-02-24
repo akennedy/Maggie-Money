@@ -1,37 +1,37 @@
 - CashFlowPlanItem::CATEGORIES.each do |category|
-  %table.table.table-striped.table-bordered.table-condensed
+  %table.table.table-striped.table-bordered.table-condensed{:style => 'margin-top: 15px;'}
     %thead.cfp_head
       %tr
-        %th.major
+        %th.major{:width => '40%'}
           %a.no-underline.show_category{:href => "javascript:void(0)", :'data-category' => "#{category[:name]}"}
             %i.icon-th-list
           = category[:name].upcase
-        %th.center Budget
-        %th.center Actually Spent
+        %th.center{:width => '30%'} Budget
+        %th.center{:width => '30%'} Actually Spent
     %tbody.cfp_body.hide{:'data-category' => "#{category[:name]}"}
       = f.fields_for :cash_flow_plan_items, @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category[:name])} do |t|
         = t.hidden_field :name, :value => t.object.name
         = t.hidden_field :category, :value => t.object.category
         %tr
-          %td.major{:width => '40%'}
+          %td.major
             %span.green
               = t.object.name.humanize
             = t.hidden_field :id
-          %td{:width => '30%'}
+          %td
             %center
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
                 = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :placeholder => '0.00', :autocomplete => :off
-          %td{:width => '30%'}
+          %td
             %center
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
                 = t.text_field :actual, :class => "actual", :placeholder => '0.00', :autocomplete => :off
     %thead.cfp_head
       %tr
-        %td.major{:width => '40%'} Total
-        %td{:width => '30%'}
+        %td.major Total
+        %td
           %input.disabled.total{:type => 'text', :id => "#{category[:name]}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category[:name]}
-        %td{:width => '30%'}
+        %td
         / %td
         /   %input.disabled.percent{:type => 'text', :id => "#{category[:name]}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category[:name]}

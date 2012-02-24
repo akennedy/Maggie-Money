@@ -8,4 +8,8 @@ class AllocatedSpendingPlan < ActiveRecord::Base
   validates_numericality_of :week_3_income, :allow_blank => true
   validates_numericality_of :week_4_income, :allow_blank => true
 
+  validates :household_income, :presence => true
+  validates_numericality_of :household_income, :allow_blank => true
+  validates :date, :presence => true
+
 end

@@ -3,6 +3,7 @@
     %tr
       %th Date
       %th Household Income
+      %th Budgeted
       %th
       %th
       %th
@@ -11,6 +12,7 @@
       %tr
         %td= link_to allocated_spending_plan.date, allocated_spending_plan_path(allocated_spending_plan)
         %td= number_to_currency(allocated_spending_plan.household_income)
+        %td
         %td
           %a.no-underline{:href => edit_allocated_spending_plan_path(allocated_spending_plan), :title => 'Edit'}
             %i.icon-pencil

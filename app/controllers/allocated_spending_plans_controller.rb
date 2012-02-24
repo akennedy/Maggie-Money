@@ -32,10 +32,11 @@ class AllocatedSpendingPlansController < ApplicationController
     @allocated_spending_plan = current_user.allocated_spending_plans.build(params[:allocated_spending_plan])
     if @allocated_spending_plan.save
       flash[:success] = 'Successfully created Allocated Spending Plan'
+      redirect_to (params[:commit] == 'Save' ? edit_allocated_spending_plan_path(@allocated_spending_plan) : dashboard_path)
     else
       flash[:error] = 'Error creating Allocated Spending Plan'
+      render :action => :new
     end
-    respond_with @allocated_spending_plan, :location => dashboard_path
   end
 
   def edit
@@ -47,10 +48,11 @@ class AllocatedSpendingPlansController < ApplicationController
     authorize! :update, @allocated_spending_plan
     if @allocated_spending_plan.update_attributes(params[:allocated_spending_plan])
       flash[:success] = 'Successfully updated Allocated Spending Plan'
+      redirect_to (params[:commit] == 'Save' ? edit_allocated_spending_plan_path(@allocated_spending_plan) : dashboard_path)
     else
       flash[:error] = 'Error updating Allocated Spending Plan'
+      render :action => :edit
     end
-    respond_with @allocated_spending_plan, :location => dashboard_path
   end
 
   def destroy

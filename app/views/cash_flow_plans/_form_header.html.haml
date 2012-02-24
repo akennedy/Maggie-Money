@@ -1,0 +1,18 @@
+.subnav
+  %table.table
+    %thead
+      %tr
+        %td{:width => '40%'}
+          .pull-left
+            %div.input-prepend{:style => 'width: 160px;'}
+              %span.add-on $
+              = f.text_field :household_income, :placeholder => 'Household Income', :style => 'width:120px;', :class => 'income household_income', :autocomplete => :off
+          .pull-right
+            = f.text_field :date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :style => 'width:120px;', :value => @cash_flow_plan.date
+        %td.center{:width => '30%'}
+          %input.cash_flow_plan_remaining.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'width:120px;text-align:center;', :class => 'remaining'}
+        %td{:width => '30%'}
+          .pull-right
+            = link_to 'Cancel', dashboard_path, :class => "btn"
+            = f.submit "Save", :class => "btn btn-success"
+            = f.submit "Finish", :class => "btn btn-primary"

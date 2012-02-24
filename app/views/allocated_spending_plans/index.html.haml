@@ -1,7 +1,16 @@
-.allocated_spending_plan_page
-  .content
-    .hero-unit
-      %h3 Allocated Spending Plans
-      %div{:style => 'float:right;margin-bottom:18px;'}
-        %a{:class => "btn primary", :href => new_allocated_spending_plan_path, :style => 'float:right;'} New Allocated Spending Plan &raquo;
-      = render 'allocated_spending_plans', :allocated_spending_plans => @allocated_spending_plans.order('date DESC')
+.well
+  .row
+    .span8
+      %h3
+        Allocated Spending Plans
+        %small= "Last one: #{current_user.allocated_spending_plans.any? ? current_user.allocated_spending_plans.order('date DESC').first.date : 'never'}"
+    .span3
+      .pull-right{:style => 'margin-left: 5px;'}
+        %a.btn.btn-primary{:href => new_allocated_spending_plan_path}
+          New
+          %i.icon-chevron-right.icon-white
+
+  - if current_user.allocated_spending_plans.any?
+    .row#asp_list{:style => 'margin-top: 15px;'}
+      .span11
+        = render 'allocated_spending_plans/allocated_spending_plans', :allocated_spending_plans => current_user.allocated_spending_plans.order('date DESC')

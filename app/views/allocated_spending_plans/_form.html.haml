@@ -1,20 +1,10 @@
 = form_for @allocated_spending_plan do |f|
-  .floating_remains{:style => 'float:left;margin:0 0 18px 58px;'}
-    %input.allocated_spending_plan_remaining.disabled{:disabled => 'disabled', :value => '$0.00 left', :style => 'width:120px;text-align:center;', :class => 'remaining'}
   .row
-    = render "shared/error_messages", :target => @allocated_spending_plan
+    .span11
+      = render "shared/error_messages", :target => @allocated_spending_plan
   .row
-    %div.input-prepend{:style => 'float:left;margin-bottom:18px;'}
-      %span.add-on $
-      = f.text_field :household_income, :placeholder => 'Household Income', :style => 'width:120px;', :class => 'income household_income', :autocomplete => :off
-    %div{:style => 'float:left;margin:0 0 18px 25px;'}
-      = f.text_field :date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :style => 'width:120px;', :value => @allocated_spending_plan.date
-    %div{:style => 'float:right;margin-bottom:18px;'}
-      = link_to 'Cancel', :back, :class => 'btn'
-      = f.submit :class => 'btn primary'
+    .span11
+      = render 'form_header', :f => f
   .row
-    = render 'table', :f => f
-  .row
-    %div{:style => 'float:right;'}
-      = link_to 'Cancel', :back, :class => 'btn'
-      = f.submit :class => 'btn primary'
+    .span11
+      = render 'form_content', :f => f

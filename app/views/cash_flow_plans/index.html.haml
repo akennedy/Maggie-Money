@@ -1,7 +1,16 @@
-.cash_flow_plan_page
-  .content
-    .hero-unit
-      %h3 Cash Flow Plans
-      %div{:style => 'float:right;margin-bottom:18px;'}
-        %a{:class => "btn primary", :href => new_cash_flow_plan_path, :style => 'float:right;'} New Cash Flow Plan &raquo;
-      = render 'cash_flow_plans', :cash_flow_plans => @cash_flow_plans.order('date DESC')
+.well
+  .row
+    .span8
+      %h3
+        Cash Flow Plans
+        %small= "Last one: #{current_user.cash_flow_plans.any? ? current_user.cash_flow_plans.order('date DESC').first.date : 'never'}"
+    .span3
+      .pull-right{:style => 'margin-left: 5px;'}
+        %a.btn.btn-primary{:href => new_cash_flow_plan_path}
+          New
+          %i.icon-chevron-right.icon-white
+
+  - if current_user.cash_flow_plans.any?
+    .row#cfp_list{:style => 'margin-top: 15px;'}
+      .span11
+        = render 'cash_flow_plans/cash_flow_plans', :cash_flow_plans => current_user.cash_flow_plans.order('date DESC')
