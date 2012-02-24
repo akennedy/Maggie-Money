@@ -1,5 +1,7 @@
 class AllocatedSpendingPlan < ActiveRecord::Base
   belongs_to :user
+  belongs_to :cash_flow_plan
+  has_many :cash_flow_plan_items, :through => :cash_flow_plan
   has_many :allocated_spending_plan_items, :dependent => :destroy
   accepts_nested_attributes_for :allocated_spending_plan_items
 

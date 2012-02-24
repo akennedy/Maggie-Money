@@ -11,7 +11,12 @@
     - cash_flow_plans.each do |cash_flow_plan|
       %tr
         %td= link_to cash_flow_plan.date, cash_flow_plan_path(cash_flow_plan)
-        %td= number_to_currency(cash_flow_plan.household_income)
+
+        %td
+          .pull-right
+            %a.no-underline{:href => new_allocated_spending_plan_path(:cfp_id => cash_flow_plan.id), :title => 'Allocate'}
+              %i.icon-random
+          = number_to_currency(cash_flow_plan.household_income)
         %td=# number_to_currency(cash_flow_plan.cash_flow_plan_items.map(&:amount).sum)
         %td
           %a.no-underline{:href => edit_cash_flow_plan_path(cash_flow_plan), :title => 'Edit'}

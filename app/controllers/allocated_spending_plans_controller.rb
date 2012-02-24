@@ -17,6 +17,7 @@ class AllocatedSpendingPlansController < ApplicationController
   def new
     authorize! :create, AllocatedSpendingPlan
     @allocated_spending_plan = current_user.allocated_spending_plans.build
+    @allocated_spending_plan.cash_flow_plan = CashFlowPlan.find(params[:cfp_id]) if params[:cfp_id]
     build_allocated_spending_plan_items
     respond_with @allocated_spending_plan
   end

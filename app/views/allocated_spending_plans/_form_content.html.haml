@@ -66,6 +66,10 @@
           %td.major
             %span.green
               = t.object.name.humanize
+            - cash_flow_plan_amount = @allocated_spending_plan.cash_flow_plan_items.detect{|item| item.category?(t.object.category) && (item.name == t.object.name)}.try(:amount)
+            - if cash_flow_plan_amount
+              %br
+              = number_to_currency(cash_flow_plan_amount)
             = t.hidden_field :id
           %td
             %center
