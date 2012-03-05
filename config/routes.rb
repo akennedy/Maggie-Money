@@ -9,6 +9,7 @@ MaggieMoney::Application.routes.draw do
   root :to => "custom_pages#home"
 
   match "/dashboard", :to => "custom_pages#dashboard"
+  match "/videos", :to => "custom_pages#videos"
 
   resources :cash_flow_plans do
     member do

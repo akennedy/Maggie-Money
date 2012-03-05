@@ -6,4 +6,9 @@ class CustomPagesController < ApplicationController
 
   def dashboard
   end
+
+  def videos
+    authorize! :read, Video
+  end
+
 end
