@@ -14,4 +14,12 @@ class AllocatedSpendingPlan < ActiveRecord::Base
   validates_numericality_of :household_income, :allow_blank => true
   validates :date, :presence => true
 
+  def budgeted
+    allocated_spending_plan_items.collect{|item| item.amount}.sum
+  end
+
+  def remaining
+    household_income - budgeted
+  end
+
 end

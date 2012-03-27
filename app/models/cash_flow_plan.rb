@@ -7,4 +7,12 @@ class CashFlowPlan < ActiveRecord::Base
   validates_numericality_of :household_income, :allow_blank => true
   validates :date, :presence => true
 
+  def budgeted
+    cash_flow_plan_items.sum(:amount)
+  end
+
+  def remaining
+    household_income - budgeted
+  end
+
 end

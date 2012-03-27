@@ -24,4 +24,11 @@ class AllocatedSpendingPlanItem < ActiveRecord::Base
   def category?(category_name)
     read_attribute(:category) == category_name
   end
+
+  def amount
+    [week_1_amount, week_2_amount, week_3_amount, week_4_amount].inject([]) do |result, amount|
+      result << amount if amount.present?
+      result
+    end.sum
+  end
 end

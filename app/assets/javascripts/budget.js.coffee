@@ -1,5 +1,6 @@
 $(document).ready ->
 
+  $('.tip').tooltip()
   $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' })
 
   set_negative = (remaining, remaining_field) ->

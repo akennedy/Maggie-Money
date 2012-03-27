@@ -7,7 +7,6 @@ class Ability
     user ||= User.new # guest user (not logged in)
     can :manage, CashFlowPlan, :user_id => user.id
     can :manage, AllocatedSpendingPlan, :user_id => user.id
-    can :read, Video if ENV["VIDEO_ACCESS"].split(',').include?(user.email)
     #   if user.admin?
     #     can :manage, :all
     #   else
