@@ -10,6 +10,17 @@
       %tr
         %td
           = cash_flow_plan.date#, cash_flow_plan_path(cash_flow_plan)
+          - if cash_flow_plan.notes.present?
+            %a.pop.no-underline{:href => "#cfp_#{cash_flow_plan.id}_notes", :'data-toggle' => "modal", :title => 'Notes', :'data-content' => cash_flow_plan.notes.truncate(150)}
+              %i.icon-tag
+            %div.hide.fade.modal{:id => "cfp_#{cash_flow_plan.id}_notes"}
+              %div.modal-header
+                %a.close{:'data-dismiss' => 'modal'}x
+                %h3 Notes
+              %div.modal-body
+                %p= cash_flow_plan.notes
+              %div.modal-footer
+                %a.btn{:href => "#", :'data-dismiss' => "modal"} Close
           .pull-right
             %a.no-underline.tip{:href => edit_cash_flow_plan_path(cash_flow_plan), :title => 'Edit'}
               %i.icon-pencil
@@ -17,7 +28,7 @@
               %i.icon-repeat
             %a.no-underline.tip{:href => new_allocated_spending_plan_path(:cfp_id => cash_flow_plan.id), :title => "Allocate #{number_to_currency(cash_flow_plan.household_income)}"}
               %i.icon-random
-            %a.no-underline.tip{:href => cash_flow_plan_path(cash_flow_plan),:method => :delete, :confirm => "Are You Sure?  This action cannot be undone.", :title => 'Delete'}
+            %a.no-underline.tip{:href => cash_flow_plan_path(cash_flow_plan), :'data-method' => :delete, :'data-confirm' => "Are You Sure?  This action cannot be undone.", :title => 'Delete'}
               %i.icon-trash
 
         %td.text-right

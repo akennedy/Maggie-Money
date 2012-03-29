@@ -8,6 +8,6 @@
   .row
     .span11
       = render 'form_content', :f => f
-  / .row
-  /   .span11
-  /     = render 'form_footer', :f => f
+  .row
+    .span11
+      = f.text_area :notes, :placeholder => 'Add some notes here...', :style => 'width:100%;height:100px;'

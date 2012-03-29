@@ -10,6 +10,17 @@
       %tr
         %td
           = allocated_spending_plan.date#, allocated_spending_plan_path(allocated_spending_plan)
+          - if allocated_spending_plan.notes.present?
+            %a.pop.no-underline{:href => "#asp_#{allocated_spending_plan.id}_notes", :'data-toggle' => "modal", :title => 'Notes', :'data-content' => allocated_spending_plan.notes.truncate(150)}
+              %i.icon-tag
+            %div.hide.fade.modal{:id => "asp_#{allocated_spending_plan.id}_notes"}
+              %div.modal-header
+                %a.close{:'data-dismiss' => 'modal'}x
+                %h3 Notes
+              %div.modal-body
+                %p= allocated_spending_plan.notes
+              %div.modal-footer
+                %a.btn{:href => "#", :'data-dismiss' => "modal"} Close
           .pull-right
             %a.no-underline.tip{:href => edit_allocated_spending_plan_path(allocated_spending_plan), :title => 'Edit'}
               %i.icon-pencil

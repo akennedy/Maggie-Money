@@ -1,7 +1,11 @@
 $(document).ready ->
 
   $('.tip').tooltip()
+  $('.pop').popover()
   $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' })
+  $('.pop[data-toggle="modal"]').click( ->
+    $(this).popover('hide')
+  )
 
   set_negative = (remaining, remaining_field) ->
     if Number(remaining) < 0
