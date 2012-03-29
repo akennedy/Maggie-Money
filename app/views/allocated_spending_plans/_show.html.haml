@@ -11,11 +11,11 @@
           %i.icon-chevron-right.icon-white
       .pull-right
         - if current_user.allocated_spending_plans.any?
-          %a.btn.show_list{:'data-list' => 'asp'}
+          %a.btn.show_worksheet_list{:'data-worksheet' => 'asp'}
             %i.icon-list
 
   - if current_user.allocated_spending_plans.any?
-    .row#asp_list.hide{:style => 'margin-top: 15px;'}
+    .row#asp_list.worksheet_list.hide{:'data-worksheet' => 'asp', :style => 'margin-top: 15px;'}
       .span11
         = render 'allocated_spending_plans/allocated_spending_plans', :allocated_spending_plans => current_user.allocated_spending_plans.limit(12).order('date DESC')
       - if current_user.allocated_spending_plans.size > 12

@@ -1,6 +1,11 @@
 $(document).ready ->
 
-  $('.show_list').live('click', ->
-    list = $(this).data('list')
-    $("##{list}_list").slideToggle()
+  $('.show_worksheet_list').live('click', ->
+    worksheet = $(this).data('worksheet')
+    $.cookie("dashboard_#{worksheet}_list", !$("##{worksheet}_list").is(':visible'))
+    $("##{worksheet}_list").slideToggle()
   )
+
+  $('.worksheet_list').each ->
+    worksheet = $(this).data('worksheet')
+    $(this).show() if $.cookie("dashboard_#{worksheet}_list") == "true"
