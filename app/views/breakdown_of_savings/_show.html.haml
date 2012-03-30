@@ -2,7 +2,7 @@
   .row
     .span8
       %h3
-        Breadown of Savings
+        Breakdown of Savings
         %small= "Last one: #{current_user.breakdown_of_savings.any? ? current_user.breakdown_of_savings.order('date DESC').first.date : 'never'}"
     .span3
       .pull-right{:style => 'margin-left: 5px;'}
