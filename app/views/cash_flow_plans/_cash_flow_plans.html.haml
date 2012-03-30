@@ -1,10 +1,10 @@
 %table.table.table-striped.table-bordered.table-condensed
   %thead
     %tr
-      %th{:width => '30%'} Date
-      %th.text-right Household Income
-      %th.text-right Budgeted
-      %th.text-right Remaining
+      %th{:width => '25%'} Date
+      %th.text-right{:width => '25%'} Household Income
+      %th.text-right{:width => '25%'} Budgeted
+      %th.text-right{:width => '25%'} Remaining
   %tbody.cfps_body
     - cash_flow_plans.each do |cash_flow_plan|
       %tr

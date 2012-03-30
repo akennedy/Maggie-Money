@@ -1,0 +1,13 @@
+= form_for @breakdown_of_saving do |f|
+  .row
+    .span11
+      = render "shared/error_messages", :target => @breakdown_of_saving
+  .row
+    .span11
+      = render 'form_header', :f => f
+  .row
+    .span11
+      = render 'form_content', :f => f
+  .row
+    .span11
+      = f.text_area :notes, :placeholder => 'Add some notes here...', :style => 'width:100%;height:100px;'

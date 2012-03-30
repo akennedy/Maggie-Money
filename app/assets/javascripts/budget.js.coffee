@@ -27,6 +27,11 @@ $(document).ready ->
     $('.remaining').val("$" + Number(if (remaining < 0) then Math.abs(remaining) else remaining).toFixed(2))
     set_negative(remaining, 'remaining')
 
+  calculate_remaining_balance = ->
+    remaining = $('.balance').sum() - $('.balance_sub_total').sum()
+    $('.remaining').val("$" + Number(if (remaining < 0) then Math.abs(remaining) else remaining).toFixed(2))
+    set_negative(remaining, 'remaining')
+
   calculate_weekly_remaining = (week, weekSum) ->
     remaining = $(".#{week}_income").val() - weekSum
     $(".#{week}_remaining").val("$" + Number(if (remaining < 0) then Math.abs(remaining) else remaining).toFixed(2))
@@ -58,6 +63,10 @@ $(document).ready ->
     percentage(category)
   )
 
+  $('.balance_sub_total').keyup( ->
+    calculate_remaining_balance()
+  )
+
   $('.week_sub_total, .week_income').keyup( ->
     week = $(this).data('week')
     weekSum = $(".#{week}_sub_total").sum()
@@ -69,12 +78,16 @@ $(document).ready ->
     calculate_percentage()
   )
 
-  $('.income, .sub_total, .actual').live('keyup', ->
+  $('.balance').keyup( ->
+    calculate_remaining_balance()
+  )
+
+  $('.income, .balance, .sub_total, .balance_sub_total, .actual').live('keyup', ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
   )
 
-  $('.income, .sub_total, .actual').blur( ->
+  $('.income, .balance, .sub_total, .balance_sub_total, .actual').blur( ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
     $(this).val(Number(value).toFixed(2)) unless isNaN(value) or value is ''
@@ -82,6 +95,7 @@ $(document).ready ->
 
   calculate_total()
   calculate_remaining()
+  calculate_remaining_balance()
   calculate_percentage()
   for week in ['week_1', 'week_2', 'week_3', 'week_4']
     calculate_weekly_remaining(week, $(".#{week}_sub_total").sum())

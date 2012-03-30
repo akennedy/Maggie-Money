@@ -1,0 +1,36 @@
+%table.table.table-striped.table-bordered.table-condensed
+  %thead
+    %tr
+      %th{:width => '25%'} Date
+      %th.text-right{:width => '25%'} Balance
+      %th.text-right{:width => '25%'} Budgeted
+      %th.text-right{:width => '25%'} Remaining
+
+  %tbody.boss_body
+    - breakdown_of_savings.each do |breakdown_of_saving|
+      %tr
+        %td
+          = breakdown_of_saving.date#, breakdown_of_saving_path(breakdown_of_saving)
+          - if breakdown_of_saving.notes.present?
+            %a.pop.no-underline{:href => "#bos_#{breakdown_of_saving.id}_notes", :'data-toggle' => "modal", :title => 'Notes', :'data-content' => breakdown_of_saving.notes.truncate(150)}
+              %i.icon-tag
+            %div.hide.fade.modal{:id => "bos_#{breakdown_of_saving.id}_notes"}
+              %div.modal-header
+                %a.close{:'data-dismiss' => 'modal'}x
+                %h3 Notes
+              %div.modal-body
+                %p= breakdown_of_saving.notes
+              %div.modal-footer
+                %a.btn{:href => "#", :'data-dismiss' => "modal"} Close
+          .pull-right
+            %a.no-underline.tip{:href => edit_breakdown_of_saving_path(breakdown_of_saving), :title => 'Edit'}
+              %i.icon-pencil
+            %a.no-underline.tip{:href => clone_breakdown_of_saving_path(breakdown_of_saving), :title => 'Clone'}
+              %i.icon-repeat
+            %a.no-underline.tip{:href => breakdown_of_saving_path(breakdown_of_saving), :'data-method' => :delete, :'data-confirm' => "Are You Sure?  This action cannot be undone.", :title => 'Delete'}
+              %i.icon-trash
+
+        %td.text-right
+          = number_to_currency(breakdown_of_saving.balance)
+        %td.text-right= number_to_currency(breakdown_of_saving.budgeted)
+        %td.text-right{:style => "color:#{remaining_bos_color(breakdown_of_saving)}"}= number_to_currency(breakdown_of_saving.remaining)

@@ -21,6 +21,12 @@ MaggieMoney::Application.routes.draw do
       get :clone
     end
   end
+
+  resources :breakdown_of_savings do
+    member do
+      get :clone
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

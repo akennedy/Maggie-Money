@@ -1,0 +1,25 @@
+.well
+  .row
+    .span8
+      %h3
+        Breadown of Savings
+        %small= "Last one: #{current_user.breakdown_of_savings.any? ? current_user.breakdown_of_savings.order('date DESC').first.date : 'never'}"
+    .span3
+      .pull-right{:style => 'margin-left: 5px;'}
+        %a.btn.btn-primary{:href => new_breakdown_of_saving_path}
+          New
+          %i.icon-chevron-right.icon-white
+      .pull-right
+        - if current_user.breakdown_of_savings.any?
+          %a.btn.show_worksheet_list{:'data-worksheet' => 'bos'}
+            %i.icon-list
+
+  - if current_user.breakdown_of_savings.any?
+    .row#bos_list.worksheet_list.hide{:style => 'margin-top: 15px;', :'data-worksheet' => 'bos'}
+      .span11
+        = render 'breakdown_of_savings/breakdown_of_savings', :breakdown_of_savings => current_user.breakdown_of_savings.limit(12).order('date DESC')
+      - if current_user.breakdown_of_savings.size > 12
+        .span11
+          %a.btn{:href => breakdown_of_savings_path}
+            %i.icon-eye-open
+            View More

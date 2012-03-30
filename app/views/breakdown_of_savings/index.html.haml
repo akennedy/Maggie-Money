@@ -1,0 +1,16 @@
+.well
+  .row
+    .span8
+      %h3
+        Breakdown of Savings
+        %small= "Last one: #{current_user.breakdown_of_savings.any? ? current_user.breakdown_of_savings.order('date DESC').first.date : 'never'}"
+    .span3
+      .pull-right{:style => 'margin-left: 5px;'}
+        %a.btn.btn-primary{:href => new_breakdown_of_saving_path}
+          New
+          %i.icon-chevron-right.icon-white
+
+  - if current_user.breakdown_of_savings.any?
+    .row#cfp_list{:style => 'margin-top: 15px;'}
+      .span11
+        = render 'breakdown_of_savings/breakdown_of_savings', :breakdown_of_savings => current_user.breakdown_of_savings.order('date DESC')

@@ -13,4 +13,7 @@ class User < ActiveRecord::Base
   has_many :allocated_spending_plans
   has_many :allocated_spending_plan_items, :through => :allocated_spending_plans
 
+  has_many :breakdown_of_savings
+  has_many :breakdown_of_saving_items, :through => :breakdown_of_savings
+
 end

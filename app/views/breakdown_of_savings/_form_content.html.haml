@@ -1,0 +1,18 @@
+%table.table.table-striped.table-bordered.table-condensed{:style => 'margin-top: 15px;'}
+  %thead.bos_head
+    %tr
+      %th.major{:width => '60%'} Name
+      %th.center{:width => '40%'} Amount
+  %tbody.bos_body
+    = f.fields_for :breakdown_of_saving_items do |t|
+      %tr
+        %td.major
+          %span.green
+            = t.object.name.humanize
+          = t.hidden_field :name, :value => t.object.name
+          = t.hidden_field :id
+        %td
+          %center
+            %div.input-prepend{:style => 'width:117px;'}
+              %span.add-on $
+              = t.text_field :amount, :class => "balance_sub_total", :placeholder => '0.00', :autocomplete => :off

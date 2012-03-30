@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329174953) do
+ActiveRecord::Schema.define(:version => 20120330172444) do
 
   create_table "allocated_spending_plan_items", :force => true do |t|
     t.integer  "allocated_spending_plan_id"
@@ -41,6 +41,23 @@ ActiveRecord::Schema.define(:version => 20120329174953) do
     t.datetime "updated_at"
     t.integer  "cash_flow_plan_id"
     t.text     "notes"
+  end
+
+  create_table "breakdown_of_saving_items", :force => true do |t|
+    t.integer  "breakdown_of_saving_id"
+    t.string   "name"
+    t.decimal  "amount",                 :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "breakdown_of_savings", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "date"
+    t.decimal  "balance",    :precision => 10, :scale => 2
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "cash_flow_plan_items", :force => true do |t|
