@@ -1,0 +1,6 @@
+- flash.each do |key, value|
+  .alert.fade.in{:class => alert_class(key)}
+    %a.close{:'data-dismiss' => "alert"}x
+    %strong
+      = alert_leader(key)
+    = value

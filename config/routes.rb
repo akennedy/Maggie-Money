@@ -6,6 +6,10 @@ MaggieMoney::Application.routes.draw do
       get "sign_up", :to => "devise/registrations#new"
   end
 
+  authenticated :user do
+    root :to => "custom_pages#dashboard"
+  end
+
   root :to => "custom_pages#home"
 
   match "/dashboard", :to => "custom_pages#dashboard"

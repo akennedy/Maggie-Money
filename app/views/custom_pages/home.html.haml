@@ -1,24 +1,11 @@
-- content_for :sign_in do
-  =form_tag user_session_path, :class => "pull-right form-inline", :style => 'margin:0 0;' do
-    =text_field_tag "user[email]", nil, :class => "input-small", :style => 'margin-top:5px;', :placeholder => "Email..."
-    =password_field_tag "user[password]", nil, :class => "input-small", :style => 'margin-top:5px;', :placeholder => "Password..."
-    =submit_tag "Go", :class => 'btn'
-
-.hero-unit{:style => 'text-align:center;padding-bottom: 0px;'}
+.hero-unit{:style => 'text-align:center;padding: 20px 60px 0px 60px;margin-bottom: 30px'}
   %h1 Welcome to Maggie Money!
   %p Why is there so much month left at the end of the money?
-  - if current_user
-    %p
-      %a{:class => "btn btn-info btn-large", :href => dashboard_path}
-        %i{:class => 'icon-home icon-white', :style => 'margin-top: 2px;'}
-        Dashboard
-      %a{:class => "btn btn-primary btn-large", :href => new_cash_flow_plan_path} Start
-  - else
-    %p
-      %a{:class => "btn btn-primary btn-large", :href => new_user_session_path}
-        %i{:class => 'icon-user icon-white', :style => 'margin-top: 2px;'}
-        Sign In
-      or
-      %a{:class => "btn btn-info btn-large", :href => new_user_registration_path} Register &raquo;
-  = image_tag 'hero.png', :style => 'margin: 40px 0 0 0;'
-
+  = image_tag 'hero.png', :style => 'margin: 5px 0 0 0;'
+.row
+  .span8.offset1
+    %h1 Simple web-based budgeting tool that makes it easy and enjoyable to do a monthly budget from anywhere.
+  .span3{:style => 'margin-left: 0px;'}
+    %p{:style => 'padding-top: 10px;margin-left:15px'}
+      %a{:class => "btn btn-huge btn-success", :href => new_user_registration_path, :style => 'width: 60%'}
+        %strong Sign Up for Free!
