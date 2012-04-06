@@ -1,17 +1,19 @@
-.well
-  %h3 Sign up
-  %hr
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-    = render "shared/error_messages", :target => resource
-    = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
-    %br
-    = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
-    %br
-    = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
+.row
+  .span4.offset4
+    .well
+      %h3 Sign up
+      %hr
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+        = render "shared/error_messages", :target => resource
+        = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
+        %br
+        = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
+        %br
+        = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
 
-    .form-actions
-      %button.btn.btn-primary{:type => 'submit'} Sign up
-      = link_to 'Cancel', :back, :class => 'btn'
+        .form-actions
+          %button.btn.btn-primary{:type => 'submit'} Sign up
+          = link_to 'Cancel', :back, :class => 'btn'
 
-  %p
-    = render 'devise/shared/links'
+      %p
+        = render 'devise/shared/links'
