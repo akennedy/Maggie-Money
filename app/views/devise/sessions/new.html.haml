@@ -4,7 +4,7 @@
       %h3 Sign In
       %hr
       = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-        = f.email_field :username, :class => 'xlarge', :placeholder => 'Username...'
+        = f.text_field :username, :class => 'xlarge', :placeholder => 'Username...'
         %br
         = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
         - if devise_mapping.rememberable?
