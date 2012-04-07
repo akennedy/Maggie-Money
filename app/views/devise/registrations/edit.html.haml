@@ -10,12 +10,14 @@
         = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
         %br
         = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
-        %span.help-inline (leave blank if you don't want to change it)
+        %span.help-inline
+          %small (leave blank if you don't want to change it)
         %br
         = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
         %br
         = f.password_field :current_password, :class => 'xlarge', :placeholder => 'Current password...'
-        %span.help-inline (we need your current password to confirm your changes)
+        %span.help-inline
+          %small (we need your current password to confirm your changes)
 
         .form-actions
           %button.btn.btn-primary{:type => 'submit'} Update #{resource_name.to_s.humanize}
