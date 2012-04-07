@@ -5,6 +5,8 @@
       %hr
       = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
         = render "shared/error_messages", :target => resource
+        = f.text_field :username, :class => 'xlarge', :placeholder => 'Username...'
+        %br
         = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
         %br
         = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
