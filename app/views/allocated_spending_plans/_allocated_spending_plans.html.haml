@@ -26,7 +26,7 @@
               %i.icon-pencil
             %a.no-underline.tip{:href => clone_allocated_spending_plan_path(allocated_spending_plan), :title => 'Clone'}
               %i.icon-repeat
-            %a.no-underline.tip{:href => allocated_spending_plan_path(allocated_spending_plan),:method => :delete, :confirm => "Are You Sure?  This action cannot be undone.", :title => 'Delete'}
+            %a.no-underline.tip{:href => allocated_spending_plan_path(allocated_spending_plan), :'data-method' => :delete, :'data-confirm' => "Are You Sure?  This action cannot be undone.", :title => 'Delete'}
               %i.icon-trash
 
 
