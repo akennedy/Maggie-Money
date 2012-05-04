@@ -5,3 +5,7 @@ en:
   date:
     formats:
       default: "%Y-%m-%d"
+  activerecord:
+    attributes:
+      user:
+        login: "Username or email"

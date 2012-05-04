@@ -5,13 +5,20 @@
       %hr
       = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
         = render "shared/error_messages", :target => resource
-        = f.text_field :username, :class => 'xlarge', :placeholder => 'Username...'
-        %br
-        = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
-        %br
-        = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
-        %br
-        = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
+        %p
+          = f.label :username
+          = f.text_field :username, :class => 'xlarge'
+        %p
+          = f.label :email, :style => 'display:inline'
+          %span{:style => 'color:red;'}*
+          %br
+          = f.email_field :email, :class => 'xlarge', :placeholder => 'example@example.com'
+        %p
+          = f.label :password, :style => 'display:inline'
+          %span{:style => 'color:red;'}*
+          %br
+          = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
+          = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
 
         .form-actions
           %button.btn.btn-primary{:type => 'submit'} Sign up

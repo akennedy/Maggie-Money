@@ -5,18 +5,22 @@
       %hr
       = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
         = render "shared/error_messages", :target => resource
-        = f.text_field :username, :class => 'xlarge', :placeholder => 'Username...'
-        %br
-        = f.email_field :email, :class => 'xlarge', :placeholder => 'Email...'
-        %br
-        = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
-        %span.help-inline
+        %p
+          = f.label :username
+          = f.text_field :username, :class => 'xlarge'
+        %p
+          = f.label :email
+          = f.email_field :email, :class => 'xlarge', :placeholder => 'example@example.com'
+        %p
+          = f.label :password, :style => 'display:inline'
           %small (leave blank if you don't want to change it)
-        %br
-        = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
-        %br
-        = f.password_field :current_password, :class => 'xlarge', :placeholder => 'Current password...'
-        %span.help-inline
+          %br
+          = f.password_field :password, :class => 'xlarge', :placeholder => 'Password...'
+          = f.password_field :password_confirmation, :class => 'xlarge', :placeholder => 'Password confirmation...'
+        %p
+          = f.label :current_password
+          = f.password_field :current_password, :class => 'xlarge', :placeholder => 'Current password...', :style => 'margin-bottom: 2px;'
+          %br
           %small (we need your current password to confirm your changes)
 
         .form-actions
