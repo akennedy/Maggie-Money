@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   # Validations
   validates :username, :uniqueness => {:case_sensitive => false}, :allow_blank => true
-  validates :username, :format => {:with => /^[a-zA-Z0-9_-]$/, :message => 'must contain only letters, numbers, underscores and dashes'}, :allow_blank => true
+  validates :username, :format => {:with => /^[A-Za-z0-9_-]+$/, :message => 'must contain only letters, numbers, underscores and dashes'}, :allow_blank => true
   validates :username, :length => {:in => 3..16}, :allow_blank => true
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
