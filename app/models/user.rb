@@ -26,11 +26,10 @@ class User < ActiveRecord::Base
   ## override to allow username or email as login
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
-    if reset_password_token = conditions[:reset_password_token]
-      where(conditions).where(["reset_password_token = ?", reset_password_token]).first
-    else
-      login = conditions.delete(:login).downcase
+    if login = conditions.delete(:login)
       where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
     end
   end
 
