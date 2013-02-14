@@ -1,6 +1,6 @@
 $(document).ready ->
 
-  $('.show_category').live('click', ->
+  $('.show_category').on('click', ->
     category = $(this).data('category')
     body = $(this).closest('table').find('tbody')
     $.cookie("cfp_#{category}_body", !body.is(':visible'))

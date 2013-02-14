@@ -1,6 +1,6 @@
 $(document).ready ->
 
-  $('.show_worksheet_list').live('click', ->
+  $('.show_worksheet_list').on('click', ->
     worksheet = $(this).data('worksheet')
     $.cookie("dashboard_#{worksheet}_list", !$("##{worksheet}_list").is(':visible'))
     $("##{worksheet}_list").slideToggle()

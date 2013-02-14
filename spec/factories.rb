@@ -19,6 +19,8 @@ FactoryGirl.define do
   end
 
   factory :allocated_spending_plan do
+    household_income      "4000.00"
+    date                  Date.today
     week_1_income         "1000.00"
     week_2_income         "1000.00"
     week_3_income         "1000.00"

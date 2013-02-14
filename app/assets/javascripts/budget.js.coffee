@@ -82,7 +82,7 @@ $(document).ready ->
     calculate_remaining_balance()
   )
 
-  $('.income, .balance, .sub_total, .balance_sub_total, .actual').live('keyup', ->
+  $('.income, .balance, .sub_total, .balance_sub_total, .actual').on('keyup', ->
     value = $(this).val().replace(',', '')
     checkForErrors($(this), value)
   )

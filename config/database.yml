@@ -1,5 +1,5 @@
 development:
-  adapter: mysql
+  adapter: mysql2
   encoding: utf8
   database: maggie_money_development
   pool: 5
@@ -7,7 +7,7 @@ development:
   password:
 
 test: &test
-  adapter: mysql
+  adapter: mysql2
   encoding: utf8
   database: maggie_money_test
   pool: 5

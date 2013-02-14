@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20120406211606) do
     t.decimal  "week_2_amount",              :precision => 10, :scale => 2
     t.decimal  "week_3_amount",              :precision => 10, :scale => 2
     t.decimal  "week_4_amount",              :precision => 10, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
   end
 
   create_table "allocated_spending_plans", :force => true do |t|
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(:version => 20120406211606) do
     t.decimal  "week_2_income",     :precision => 10, :scale => 2
     t.decimal  "week_3_income",     :precision => 10, :scale => 2
     t.decimal  "week_4_income",     :precision => 10, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.integer  "cash_flow_plan_id"
     t.text     "notes"
   end
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(:version => 20120406211606) do
     t.integer  "breakdown_of_saving_id"
     t.string   "name"
     t.decimal  "amount",                 :precision => 10, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   create_table "breakdown_of_savings", :force => true do |t|
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20120406211606) do
     t.date     "date"
     t.decimal  "balance",    :precision => 10, :scale => 2
     t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "cash_flow_plan_items", :force => true do |t|
@@ -66,32 +66,32 @@ ActiveRecord::Schema.define(:version => 20120406211606) do
     t.string   "category"
     t.decimal  "amount",            :precision => 10, :scale => 2
     t.decimal  "actual",            :precision => 10, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   create_table "cash_flow_plans", :force => true do |t|
     t.integer  "user_id"
     t.date     "date"
     t.decimal  "household_income", :precision => 10, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.text     "notes"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "username"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"

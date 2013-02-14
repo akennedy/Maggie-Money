@@ -20,7 +20,7 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  config.include Factory::Syntax::Methods
+  config.include FactoryGirl::Syntax::Methods
 
   # config.include Devise::TestHelpers, :type => :controller
 
