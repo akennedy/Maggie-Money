@@ -9,32 +9,32 @@
   %tbody.asp_body{:style => 'background-color: #f5f5f5;'}
     %tr
       %td
-      %td.center= f.text_field :week_1_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_1_date, :style => 'width: 105px;'
-      %td.center= f.text_field :week_2_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_2_date, :style => 'width: 105px;'
-      %td.center= f.text_field :week_3_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_3_date, :style => 'width: 105px;'
-      %td.center= f.text_field :week_4_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_4_date, :style => 'width: 105px;'
+      %td.center= f.number_field :week_1_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_1_date, :style => 'width: 105px;'
+      %td.center= f.number_field :week_2_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_2_date, :style => 'width: 105px;'
+      %td.center= f.number_field :week_3_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_3_date, :style => 'width: 105px;'
+      %td.center= f.number_field :week_4_date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :value => @allocated_spending_plan.week_4_date, :style => 'width: 105px;'
     %tr
       %td
       %td
         %center
           %div.input-prepend{:style => 'width:117px;'}
             %span.add-on $
-            = f.text_field :week_1_income, :placeholder => 'Income', :class => 'income week_income week_1_income', :'data-week' => "week_1", :autocomplete => :off
+            = f.number_field :week_1_income, :placeholder => 'Income', :class => 'income week_income week_1_income', :'data-week' => "week_1", :autocomplete => :off
       %td
         %center
           %div.input-prepend{:style => 'width:117px;'}
             %span.add-on $
-            = f.text_field :week_2_income, :placeholder => 'Income', :class => 'income week_income week_2_income', :'data-week' => "week_2", :autocomplete => :off
+            = f.number_field :week_2_income, :placeholder => 'Income', :class => 'income week_income week_2_income', :'data-week' => "week_2", :autocomplete => :off
       %td
         %center
           %div.input-prepend{:style => 'width:117px;'}
             %span.add-on $
-            = f.text_field :week_3_income, :placeholder => 'Income', :class => 'income week_income week_3_income', :'data-week' => "week_3", :autocomplete => :off
+            = f.number_field :week_3_income, :placeholder => 'Income', :class => 'income week_income week_3_income', :'data-week' => "week_3", :autocomplete => :off
       %td
         %center
           %div.input-prepend{:style => 'width:117px;'}
             %span.add-on $
-            = f.text_field :week_4_income, :placeholder => 'Income', :class => 'income week_income week_4_income', :'data-week' => "week_4", :autocomplete => :off
+            = f.number_field :week_4_income, :placeholder => 'Income', :class => 'income week_income week_4_income', :'data-week' => "week_4", :autocomplete => :off
     %tr
       %td
       %td.center
@@ -75,19 +75,19 @@
             %center
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
-                = t.text_field :week_1_amount, :class => "sub_total #{t.object.category} week_sub_total week_1_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_1", :placeholder => '0.00', :autocomplete => :off
+                = t.number_field :week_1_amount, :class => "sub_total #{t.object.category} week_sub_total week_1_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_1", :placeholder => '0.00', :autocomplete => :off
           %td
             %center
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
-                = t.text_field :week_2_amount, :class => "sub_total #{t.object.category} week_sub_total week_2_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_2", :placeholder => '0.00', :autocomplete => :off
+                = t.number_field :week_2_amount, :class => "sub_total #{t.object.category} week_sub_total week_2_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_2", :placeholder => '0.00', :autocomplete => :off
           %td
             %center
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
-                = t.text_field :week_3_amount, :class => "sub_total #{t.object.category} week_sub_total week_3_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_3", :placeholder => '0.00', :autocomplete => :off
+                = t.number_field :week_3_amount, :class => "sub_total #{t.object.category} week_sub_total week_3_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_3", :placeholder => '0.00', :autocomplete => :off
           %td
             %center
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
-                = t.text_field :week_4_amount, :class => "sub_total #{t.object.category} week_sub_total week_4_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_4", :placeholder => '0.00', :autocomplete => :off
+                = t.number_field :week_4_amount, :class => "sub_total #{t.object.category} week_sub_total week_4_sub_total", :'data-category' => "#{t.object.category}", :'data-week' => "week_4", :placeholder => '0.00', :autocomplete => :off

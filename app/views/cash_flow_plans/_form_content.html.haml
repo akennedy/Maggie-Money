@@ -21,12 +21,12 @@
             %center
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
-                = t.text_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :placeholder => '0.00', :autocomplete => :off
+                = t.number_field :amount, :class => "sub_total #{t.object.category}", :'data-category' => "#{t.object.category}", :placeholder => '0.00', :autocomplete => :off
           %td
             %center
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
-                = t.text_field :actual, :class => "actual", :placeholder => '0.00', :autocomplete => :off
+                = t.number_field :actual, :class => "actual", :placeholder => '0.00', :autocomplete => :off
     %thead.cfp_head
       %tr
         %td.major Total
