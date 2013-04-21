@@ -6,7 +6,7 @@
           .pull-left
             %div.input-prepend{:style => 'width: 160px;'}
               %span.add-on $
-              = f.number_field :balance, :placeholder => 'Balance', :style => 'width:120px;', :class => 'balance', :autocomplete => :off
+              = f.number_field :balance, :placeholder => 'Balance', :style => 'width:120px;', :class => 'balance', :autocomplete => :off, :step =>'any'
           .pull-right
             = f.text_field :date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :style => 'width:120px;', :value => @breakdown_of_saving.date
         %td.center{:width => '30%'}
