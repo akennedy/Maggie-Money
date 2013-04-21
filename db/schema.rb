@@ -64,20 +64,20 @@ ActiveRecord::Schema.define(:version => 20130421191732) do
     t.integer  "cash_flow_plan_id"
     t.string   "name"
     t.string   "category"
-    t.decimal  "amount",            :precision => 10, :scale => 2
-    t.decimal  "actual",            :precision => 10, :scale => 2
+    t.decimal  "amount",              :precision => 10, :scale => 2
+    t.decimal  "actual",              :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "confirmation_number"
   end
 
   create_table "cash_flow_plans", :force => true do |t|
     t.integer  "user_id"
     t.date     "date"
-    t.decimal  "household_income",    :precision => 10, :scale => 2
+    t.decimal  "household_income", :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "notes"
-    t.string   "confirmation_number"
   end
 
   create_table "users", :force => true do |t|
