@@ -6,8 +6,9 @@
           %a.no-underline.show_category{:href => "javascript:void(0)", :'data-category' => "#{category[:name]}"}
             %i.icon-th-list
           = category[:name].upcase
-        %th.center{:width => '30%'} Budget
-        %th.center{:width => '30%'} Actually Spent
+        %th.center{:width => '20%'} Budget
+        %th.center{:width => '20%'} Actually Spent
+        %th.center{:width => '20%'} Confirmation Number
     %tbody.cfp_body.hide{:'data-category' => "#{category[:name]}"}
       = f.fields_for :cash_flow_plan_items, @cash_flow_plan.cash_flow_plan_items.select{|item| item.category?(category[:name])} do |t|
         = t.hidden_field :name, :value => t.object.name
@@ -27,11 +28,16 @@
               %div.input-prepend{:style => 'width:117px;'}
                 %span.add-on $
                 = t.number_field :actual, :class => "actual", :placeholder => '0.00', :autocomplete => :off
+          %td
+            %center
+              %div
+                = text_field :confirmation_number, "", :style => "width:90%;"
     %thead.cfp_head
       %tr
         %td.major Total
         %td
           %input.disabled.total{:type => 'text', :id => "#{category[:name]}_total", :value => '0.00', :disabled => 'disabled', :'data-category' => category[:name]}
+        %td
         %td
         / %td
         /   %input.disabled.percent{:type => 'text', :id => "#{category[:name]}_percent", :value => '0.00 %', :disabled => 'disabled', :'data-category' => category[:name]}
