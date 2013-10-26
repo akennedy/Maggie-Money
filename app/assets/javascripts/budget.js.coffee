@@ -21,6 +21,13 @@ $(document).ready ->
       totalSum = $(".#{category}").sum()
       $(this).val("$" + Number(totalSum).toFixed(2))
     )
+		
+  set_format = ->
+    $('.income, .balance, .sub_total, .balance_sub_total, .actual').each( ->
+      value = $(this).val().replace(',', '')
+      checkForErrors($(this), value)
+      $(this).val(Number(value).toFixed(2)) unless isNaN(value) or value is ''
+    )
 
   calculate_remaining = ->
     remaining = $('.household_income').sum() - $('.sub_total').sum()
@@ -29,8 +36,8 @@ $(document).ready ->
 
   calculate_remaining_balance = ->
     remaining = $('.balance').sum() - $('.balance_sub_total').sum()
-    $('.remaining').val("$" + Number(if (remaining < 0) then Math.abs(remaining) else remaining).toFixed(2))
-    set_negative(remaining, 'remaining')
+    $('.savings_remaining').val("$" + Number(if (remaining < 0) then Math.abs(remaining) else remaining).toFixed(2))
+    set_negative(remaining, 'savings_remaining')
 
   calculate_weekly_remaining = (week, weekSum) ->
     remaining = $(".#{week}_income").val() - weekSum
@@ -93,6 +100,7 @@ $(document).ready ->
     $(this).val(Number(value).toFixed(2)) unless isNaN(value) or value is ''
   )
 
+  set_format()
   calculate_total()
   calculate_remaining()
   calculate_remaining_balance()

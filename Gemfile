@@ -8,7 +8,6 @@ gem 'kaminari'
 gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
-gem 'therubyracer-heroku'
 gem 'deep_cloneable', '~> 1.4.1'
 gem 'newrelic_rpm'
 
@@ -21,7 +20,7 @@ group :assets do
 end
 
 group :development do
-  gem 'debugger'
+  gem 'byebug'
 end
 
 group :test do

@@ -10,7 +10,7 @@
           .pull-right
             = f.text_field :date, :class => 'datepicker', :placeholder => 'yyyy-mm-dd', :style => 'width:120px;', :value => @breakdown_of_saving.date
         %td.center{:width => '30%'}
-          %input.breakdown_of_saving_remaining{:disabled => 'disabled', :value => '$0.00 left', :style => 'width:120px;text-align:center;', :class => 'remaining'}
+          %input.breakdown_of_saving_remaining{:disabled => 'disabled', :value => '$0.00 left', :style => 'width:120px;text-align:center;', :class => 'savings_remaining'}
         %td{:width => '30%'}
           .pull-right
             = link_to 'Cancel', root_path, :class => "btn"
